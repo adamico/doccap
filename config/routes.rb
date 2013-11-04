@@ -1,5 +1,12 @@
 Doccap::Application.routes.draw do
   devise_for :users
+
+  as :user do
+    get "login"  => "devise/sessions#new",     as: "login"
+    get "logout" => "devise/sessions#destroy", as: "logout"
+  end
+
+  root to: "home#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -8,7 +8,13 @@
 </head>
 <body>
 
-<%= yield %>
+  <% flash && flash.each do |name, msg| %>
+    <div class="alert fade in alert-<%= name %>">
+      <a href="#" data-dismiss="alert" class="close">&times;</a>
+      <strong><%= msg %></strong>
+    </div>
+  <% end %>
+  <%= yield %>
 
 </body>
 </html>
