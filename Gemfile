@@ -52,6 +52,7 @@ gem 'unicorn'
 gem "unicorn-rails"
 gem 'foreman'
 
+gem "devise", github: "plataformatec/devise"
 gem 'simple_form', github: "plataformatec/simple_form"
 gem "mongoid-paperclip", github: "meskyanichi/mongoid-paperclip", require: "mongoid_paperclip"
 gem 'aws-sdk', '~> 1.3.4'
