@@ -54,7 +54,8 @@ gem 'foreman'
 
 gem 'bootstrap-sass', '~> 3.0.1.0.rc'
 gem "devise", github: "plataformatec/devise"
-gem 'simple_form', github: "plataformatec/simple_form"
+#gem 'simple_form', github: "plataformatec/simple_form"
+gem 'simple_form', github: 'zlx/simple_form_bootstrap3'
 gem "mongoid-paperclip", github: "meskyanichi/mongoid-paperclip", require: "mongoid_paperclip"
 gem 'aws-sdk', '~> 1.3.4'
 gem "paperclip-dropbox", ">= 1"
