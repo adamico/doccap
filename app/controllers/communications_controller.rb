@@ -60,6 +60,6 @@ class CommunicationsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def communication_params
-    params.require(:communication).permit(:titre, :publication, :fichier, :remove_file, :tags)
+    params.require(:communication).permit(:titre, :publication, :fichier, :remove_file, :tags, :category_id)
   end
 end

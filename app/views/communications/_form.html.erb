@@ -3,6 +3,7 @@
 
   <%= f.input :titre, autofocus: true %>
   <%= f.input :publication, label: "Publié le" %>
+  <%= f.association :category, label: "Type", collection: Category.asc(:name) %>
 
   <div class="form-group communication_tags">
     <%= f.label :tags, "Mots clés", class: "control-label col-lg-2" %>

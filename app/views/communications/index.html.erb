@@ -5,6 +5,7 @@
     <tr>
       <th>Titre</th>
       <th>Publié le</th>
+      <th>Type</th>
       <th>Mots clés</th>
       <th>Fichier</th>
       <th>&nbsp;</th>
@@ -16,6 +17,7 @@
       <tr>
         <td><%= communication.titre %></td>
         <td><%= l communication.publication %></td>
+        <td><%= communication.category %></td>
         <td><%= communication.tags %></td>
         <td><%= link_to communication.fichier_file_name, communication.fichier.url(download: true) if communication.fichier.present? %></td>
         <td>

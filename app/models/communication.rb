@@ -7,9 +7,11 @@ class Communication
   has_mongoid_attached_file :fichier,
     storage: :dropbox, dropbox_credentials: Rails.root.join("config/dropbox.yml")
 
-  field :titre, type: String
-  field :slugged_titre
-  field :publication, type: Date
+  field :t, as: :titre, type: String
+  field :st, as: :slugged_titre
+  field :p, as: :publication, type: Date
+
+  belongs_to :category
 
   validates :titre, presence: true, uniqueness: true
   before_validation :generate_slugged_fields
