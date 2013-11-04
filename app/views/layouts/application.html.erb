@@ -7,14 +7,38 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-  <% flash && flash.each do |name, msg| %>
-    <div class="alert fade in alert-<%= name %>">
-      <a href="#" data-dismiss="alert" class="close">&times;</a>
-      <strong><%= msg %></strong>
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="navbar-header">
+      <% if current_user %>
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-doccap-collapse">
+        <%= content_tag :span, "Menu", class: "sr-only" %>
+        <% 3.times do %>
+          <%= content_tag :span, nil, class: "icon-bar" %>
+        <% end %>
+      </button>
+      <% end %>
+      <%= link_to "Doccap", root_path, class: "navbar-brand" %>
     </div>
-  <% end %>
-  <%= yield %>
+    <% if current_user %>
+    <div class="collapse navbar-collapse" id="navbar-doccap-collapse">
+      <ul class="nav navbar-nav">
+        <li><%= link_to "Recherche bibliographie", "/biblio" %></li>
+        <li><%= link_to "Coordonnées utiles", "/coord" %></li>
+      </ul>
+    <% end %>
+  </nav>
 
+  <div id="page_wrap">
+    <% flashes = {alert: "warning", notice: "info", error: "danger"} %>
+    <% flash && flash.each do |name, msg| %>
+      <div class="flash alert fade in <%= "alert-#{flashes[name]}" %>">
+        <a href="#" class="close", data-dismiss="alert"}>&times;</a>
+        <strong><%= msg %></strong>
+      </div>
+    <% end %>
+    <div class="container">
+      <%= yield %>
+    </div>
+  </div>
 </body>
 </html>

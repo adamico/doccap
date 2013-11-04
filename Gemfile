@@ -52,6 +52,7 @@ gem 'unicorn'
 gem "unicorn-rails"
 gem 'foreman'
 
+gem 'bootstrap-sass', '~> 3.0.1.0.rc'
 gem "devise", github: "plataformatec/devise"
 gem 'simple_form', github: "plataformatec/simple_form"
 gem "mongoid-paperclip", github: "meskyanichi/mongoid-paperclip", require: "mongoid_paperclip"
