@@ -1,0 +1,21 @@
+test:
+  app_key: "caqe3l7v40omp82"
+  app_secret: "x5yxqunb3k2s8qu"
+  access_token: "yagz8qg61avi1aiu"
+  access_token_secret: "89jgkxeb6uzcfdm"
+  user_id: 232660795
+  access_type: "app_folder"
+development:
+  app_key: "caqe3l7v40omp82"
+  app_secret: "x5yxqunb3k2s8qu"
+  access_token: "yagz8qg61avi1aiu"
+  access_token_secret: "89jgkxeb6uzcfdm"
+  user_id: 232660795
+  access_type: "app_folder"
+production:
+  app_key: <%= ENV['DROPBOX_APP_KEY'] %>
+  app_secret: <%= ENV['DROPBOX_APP_SECRET'] %>
+  access_token: <%= ENV['DROPBOX_ACCESS_TOKEN'] %>
+  access_token_secret: <%= ENV['DROPBOX_ACCESS_TOKEN_SECRET'] %>
+  user_id: <%= ENV['DROPBOX_USER_ID'] %>
+  access_type: "app_folder"

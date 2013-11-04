@@ -15,5 +15,8 @@
 //= require jquery.turbolinks
 //= require turbolinks
 //= require bootstrap
+//= require select2
+//= require common
+//= require communications
 //= require home
 //= require_tree .

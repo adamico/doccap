@@ -1,0 +1,32 @@
+<%= simple_form_for @communication, html: {class: "form-horizontal", multipart: true} do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :titre, autofocus: true %>
+  <%= f.input :publication, label: "Publié le" %>
+
+  <div class="form-group communication_tags">
+    <%= f.label :tags, "Mots clés", class: "control-label col-lg-2" %>
+    <div class="col-lg-6">
+      <%= f.hidden_field :tags,
+        value: f.object.tags,
+        data: {
+          load: f.object.tags_array.map {|tag| {id: tag, text: tag}}.to_json,
+          placeholder: "mots séparés par virgule",
+          url: communication_tags_path(format: :json)
+      } %>
+    </div>
+  </div>
+
+  <%= f.input :fichier, as: :file %>
+  <%= f.input :remove_file, as: :boolean, inline_label: "Effacer le fichier ?", label: false %>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.button :submit, "Enregistrer", class: "btn-primary" %>
+
+      <%= link_to 'Retour au document', @communication, class: "btn btn-warning" unless f.object.new_record? %>
+      <%= link_to 'Retour à la liste', communications_path, class: "btn btn-danger" %>
+    </div>
+  </div>
+
+<% end %>

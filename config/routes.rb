@@ -6,6 +6,9 @@ Doccap::Application.routes.draw do
     get "logout" => "devise/sessions#destroy", as: "logout"
   end
 
+  resources :communications
+  get "tags", to: "communications#tags", as: "communication_tags"
+
   root to: "home#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
