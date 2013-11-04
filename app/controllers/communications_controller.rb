@@ -1,33 +1,23 @@
 class CommunicationsController < ApplicationController
-  before_action :set_communication, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  load_and_authorize_resource
 
   def tags
     @tags = Communication.tags.select {|tag| tag =~ /#{params[:q]}/i}
   end
 
-  # GET /communications
-  # GET /communications.json
   def index
     @communications = Communication.all
   end
 
-  # GET /communications/1
-  # GET /communications/1.json
   def show
   end
 
-  # GET /communications/new
   def new
-    @communication = Communication.new
   end
 
-  # GET /communications/1/edit
   def edit
   end
 
-  # POST /communications
-  # POST /communications.json
   def create
     @communication = Communication.new(communication_params)
 
@@ -67,13 +57,9 @@ class CommunicationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_communication
-      @communication = Communication.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def communication_params
-      params.require(:communication).permit(:titre)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def communication_params
+    params.require(:communication).permit(:titre, :publication, :fichier, :remove_file, :tags)
+  end
 end
