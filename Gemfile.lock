@@ -1,3 +1,51 @@
+GIT
+  remote: git://github.com/argerim/select2-rails.git
+  revision: 28fb6352611cf8bb88e4a10d2fe2e7509fffa89a
+  specs:
+    select2-rails (3.5.1)
+      thor (~> 0.14)
+
+GIT
+  remote: git://github.com/bmabey/database_cleaner.git
+  revision: 6da38c4c1a565bbcc62ed9b84c2574537c6ebae2
+  specs:
+    database_cleaner (1.2.0)
+
+GIT
+  remote: git://github.com/jonleighton/poltergeist.git
+  revision: e4c7550083d6afbc767a19eca8d0eafc25fac6a5
+  specs:
+    poltergeist (1.4.1)
+      capybara (~> 2.1.0)
+      cliver (~> 0.2.1)
+      multi_json (~> 1.0)
+      websocket-driver (>= 0.2.0)
+
+GIT
+  remote: git://github.com/meskyanichi/mongoid-paperclip.git
+  revision: 34a66cbc6c35098fb5fc9eaa5cf051c8556c9fe3
+  specs:
+    mongoid-paperclip (0.0.8)
+      paperclip (>= 2.3.6)
+
+GIT
+  remote: git://github.com/mongoid/mongoid.git
+  revision: 10d351f3e1e75c701e0fbc4be0c22c4284fff9b1
+  specs:
+    mongoid (4.0.0)
+      activemodel (~> 4.0.0)
+      moped (~> 2.0.beta3)
+      origin (~> 1.0)
+      tzinfo (~> 0.3.37)
+
+GIT
+  remote: git://github.com/plataformatec/simple_form.git
+  revision: 146cff7ec6bdaba00201b73704f3417a7b978e31
+  specs:
+    simple_form (3.0.0)
+      actionpack (>= 4.0.0, < 4.1)
+      activemodel (>= 4.0.0, < 4.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -27,7 +75,28 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.1)
     atomic (1.1.14)
+    aws-sdk (1.3.9)
+      httparty (~> 0.7)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
+      uuidtools (~> 2.1)
+    bson (2.0.0.rc3)
+    bson_ext (1.5.1)
     builder (3.1.4)
+    capybara (2.1.0)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
+    celluloid (0.15.2)
+      timers (~> 1.1.0)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cliver (0.2.2)
+    cocaine (0.5.3)
+      climate_control (>= 0.0.3, < 1.0)
+    coderay (1.0.9)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -35,9 +104,42 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    columnize (0.3.6)
+    debugger (1.6.2)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.2.3)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.2.3)
+    diff-lcs (1.2.4)
+    dotenv (0.9.0)
+    dropbox-sdk (1.6.2)
+      json
     erubis (2.7.0)
     execjs (2.0.2)
+    factory_girl (4.3.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.3.0)
+      factory_girl (~> 4.3.0)
+      railties (>= 3.0.0)
+    ffi (1.9.3)
+    foreman (0.63.0)
+      dotenv (>= 0.7)
+      thor (>= 0.13.6)
+    formatador (0.2.4)
+    guard (2.2.2)
+      formatador (>= 0.2.4)
+      listen (~> 2.1)
+      lumberjack (~> 1.0)
+      pry (>= 0.9.12)
+      thor (>= 0.18.1)
+    guard-rspec (2.1.2)
+      guard (>= 1.1)
+      rspec (~> 2.11)
     hike (1.2.3)
+    httparty (0.12.0)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.6.5)
     jbuilder (1.5.2)
       activesupport (>= 3.0.0)
@@ -45,14 +147,57 @@ GEM
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-turbolinks (2.0.1)
+      railties (>= 3.1.0)
+      turbolinks
     json (1.8.1)
+    kgio (2.8.1)
+    listen (2.2.0)
+      celluloid (>= 0.15.2)
+      rb-fsevent (>= 0.9.3)
+      rb-inotify (>= 0.9)
+    lumberjack (1.0.4)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    method_source (0.8.2)
     mime-types (1.25)
+    mini_portile (0.5.2)
     minitest (4.7.5)
+    mongoid-rspec (1.9.0)
+      mongoid (>= 3.0.1)
+      rake
+      rspec (>= 2.14)
+    mongoid_taggable (1.1.1)
+      mongoid (>= 3)
+      rake
+    moped (2.0.0.beta3)
+      bson (~> 2.0.0.rc3)
+      optionable (~> 0.1.1)
     multi_json (1.8.2)
+    multi_xml (0.5.5)
+    newrelic_rpm (3.6.8.168)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
+    optionable (0.1.1)
+    origin (1.1.0)
+    paperclip (3.5.2)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
+    paperclip-dropbox (1.1.7)
+      dropbox-sdk (~> 1.3)
+      paperclip (~> 3.1)
     polyglot (0.3.3)
+    pry (0.9.12.2)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    pry-rails (0.3.2)
+      pry (>= 0.9.10)
+    quiet_assets (1.0.2)
+      railties (>= 3.1, < 5.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -64,14 +209,38 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.0.0)
       sprockets-rails (~> 2.0.0)
+    rails_12factor (0.0.2)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.1)
+    rails_stdout_logging (0.0.3)
     railties (4.0.0)
       actionpack (= 4.0.0)
       activesupport (= 4.0.0)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
+    raindrops (0.12.0)
     rake (10.1.0)
+    rb-fsevent (0.9.3)
+    rb-inotify (0.9.2)
+      ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    rspec (2.14.1)
+      rspec-core (~> 2.14.0)
+      rspec-expectations (~> 2.14.0)
+      rspec-mocks (~> 2.14.0)
+    rspec-core (2.14.7)
+    rspec-expectations (2.14.3)
+      diff-lcs (>= 1.1.3, < 2.0)
+    rspec-mocks (2.14.4)
+    rspec-rails (2.14.0)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 2.14.0)
+      rspec-expectations (~> 2.14.0)
+      rspec-mocks (~> 2.14.0)
     sass (3.2.12)
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
@@ -80,6 +249,11 @@ GEM
     sdoc (0.3.20)
       json (>= 1.1.3)
       rdoc (~> 3.10)
+    simplecov (0.7.1)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.7.1)
+    simplecov-html (0.7.1)
+    slop (3.4.6)
     sprockets (2.10.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -93,6 +267,7 @@ GEM
     thread_safe (0.1.3)
       atomic
     tilt (1.4.1)
+    timers (1.1.0)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -102,16 +277,52 @@ GEM
     uglifier (2.3.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unicorn (4.7.0)
+      kgio (~> 2.6)
+      rack
+      raindrops (~> 0.7)
+    unicorn-rails (1.1.0)
+      rack
+      unicorn
+    uuidtools (2.1.4)
+    websocket-driver (0.3.0)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  aws-sdk (~> 1.3.4)
+  bson_ext
+  capybara
   coffee-rails (~> 4.0.0)
+  database_cleaner!
+  debugger
+  factory_girl_rails
+  foreman
+  guard-rspec (~> 2.1.0)
   jbuilder (~> 1.2)
   jquery-rails
+  jquery-turbolinks
+  mongoid!
+  mongoid-paperclip!
+  mongoid-rspec
+  mongoid_taggable
+  newrelic_rpm
+  paperclip-dropbox (>= 1)
+  poltergeist!
+  pry-rails
+  quiet_assets (>= 1.0.1)
   rails (= 4.0.0)
+  rails_12factor
+  rspec-rails
   sass-rails (~> 4.0.0)
   sdoc
+  select2-rails!
+  simple_form!
+  simplecov
   turbolinks
   uglifier (>= 1.3.0)
+  unicorn
+  unicorn-rails
