@@ -61,6 +61,7 @@ gem 'aws-sdk', '~> 1.3.4'
 gem "paperclip-dropbox", ">= 1"
 gem 'mongoid_taggable'
 gem 'select2-rails', github: "argerim/select2-rails"
+gem "cancan", github: "ncri/cancan", branch: "2.0"
 
 group :test, :development do
   gem "rspec-rails"
