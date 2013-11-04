@@ -1,5 +1,8 @@
 class HomeController < ApplicationController
-  before_action :authenticate_user!
+  respond_to :js, only: :search
   def index
+  end
+
+  def search
   end
 end

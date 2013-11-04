@@ -1,0 +1,4 @@
+<% if params["titre_or_tag"].present? %>
+  $("#search_results").html("<hr>\n<h3>Résultats de la recherche</h3>\n<p>Terme(s) recherché(s) : '<%= params["titre_or_tag"] %>'</p>");
+  <%# Query Vigitox remote api %>
+<% end %>
