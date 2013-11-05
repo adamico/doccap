@@ -8,8 +8,6 @@ class Ability
         can :access, :all
         cannot :destroy, :users, id: user.id
       end
-    else
-      can :index, :home
     end
     # Define abilities for the passed in (current) user. For example:
     #
