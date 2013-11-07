@@ -1,1 +1,4 @@
-<li><%=  link_to(article['titre'], "#{vigitox}/articles/#{article['id']}") + " (N°#{article['revue']})" %></li>
+<li>
+  <%= link_to(content_tag(:span, article['revue'], class: "badge"), "#{vigitox}/revues/#{article['revue']}", target: "_BLANK") %>
+  <%= link_to article['titre'], "#{vigitox}/articles/#{article['id']}", target: "_BLANK" %>
+</li>

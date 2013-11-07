@@ -3,7 +3,7 @@
   html += "<p>Terme(s) recherché(s) : '<%= params["query"] %>'</p>"
   <% if @articles.any? %>
     html += "<h4>Articles Vigitox</h4>"
-    html += "<ul>";
+    html += "<ul class='list-unstyled'>";
     <% @articles.each do |article| %>
       html += "<%= j render "article", article: article, vigitox: @vigitox %>";
     <% end %>
