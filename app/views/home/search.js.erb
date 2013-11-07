@@ -1,22 +1,14 @@
 <% if params["query"].present? %>
   html = "<hr>\n<h3>Résultats de la recherche</h3>\n"
   html += "<p>Terme(s) recherché(s) : '<%= params["query"] %>'</p>"
+  <% vigitox = "http://localhost:3001" %>
+  <% articles = HTTParty.get("#{vigitox}/api/v1/articles?q=#{params['query']}") %>
+  <% if articles.any? %>
+      html += "<ul>";
+    <% articles.each do |article| %>
+      html += "<li><%= j(link_to(article['titre'], "#{vigitox}/articles/#{article['id']}")) + " (VIGITOX N°#{article['revue']})" %></li>";
+    <% end %>
+      html += "</ul>";
+  <% end %>
   $("#search_results").html(html);
-  <%# Query Vigitox remote api %>
-  var vigitoxAPI = "http://vigitox.herokuapp.com/api/v1/articles";
-  var vigitoxRequest = $.ajax({
-    beforeSend: function(xhr){
-      xhr.setRequestHeader("Authorization", "Token <%= ENV['VIGITOX_TOKEN'] %>")
-    },
-    url: vigitoxAPI,
-    data: { q: "<%= params['query'] %>" },
-    dataType: "json"
-  });
-  vigitoxRequest.done(function( jqXHR, textStatus ) {
-    console.log("DONE");
-    console.dir( "jqXHR: " + jqXHR);
-  });
-  vigitoxRequest.fail(function( jqXHR, textStatus ) {
-    console.log( "Request failed: " + textStatus );
-  });
 <% end %>
