@@ -1,14 +1,11 @@
 <% if params["query"].present? %>
   html = "<hr>\n<h3>Résultats de la recherche</h3>\n"
   html += "<p>Terme(s) recherché(s) : '<%= params["query"] %>'</p>"
-  <% vigitox = "http://vigitox.herokuapp.com" %>
-  <% vigitox_local = "http://localhost:3001" %>
-  <% articles = HTTParty.get("#{vigitox_local}/api/v1/articles?q=#{params['query']}") %>
-  <% if articles.any? %>
+  <% if @articles.any? %>
     html += "<h4>Articles Vigitox</h4>"
     html += "<ul>";
-    <% articles.each do |article| %>
-      html += "<%= j render "article", article: article, vigitox: vigitox_local %>";
+    <% @articles.each do |article| %>
+      html += "<%= j render "article", article: article, vigitox: @vigitox %>";
     <% end %>
       html += "</ul>";
   <% end %>
