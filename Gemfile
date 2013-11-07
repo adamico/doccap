@@ -63,6 +63,7 @@ gem "paperclip-dropbox", ">= 1"
 gem 'mongoid_taggable'
 gem 'select2-rails', github: "argerim/select2-rails"
 gem "cancan", github: "ncri/cancan", branch: "2.0"
+gem "httparty"
 
 group :test, :development do
   gem "rspec-rails"
@@ -82,4 +83,9 @@ group :development do
   gem "debugger"
   gem "pry-rails"
   gem "quiet_assets", ">= 1.0.1"
+  gem 'better_errors'
+  gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
+  gem 'guard-bundler'
+  gem 'hub', :require=>nil
+  gem 'guard-rails'
 end

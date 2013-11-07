@@ -1,5 +1,15 @@
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
+guard 'bundler' do
+  watch('Gemfile')
+  # Uncomment next line if Gemfile contain `gemspec' command
+  # watch(/^.+\.gemspec/)
+end
+
+guard 'rails' do
+  watch('Gemfile.lock')
+  watch(%r{^(config|lib)/.*})
+end
 
 guard 'rspec', all_on_start: false, all_after_pass: false, cmd: "zeus rspec -f doc" do
   watch(%r{^spec/.+_spec\.rb$})
