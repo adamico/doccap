@@ -4,9 +4,10 @@
   <% vigitox = "http://localhost:3001" %>
   <% articles = HTTParty.get("#{vigitox}/api/v1/articles?q=#{params['query']}") %>
   <% if articles.any? %>
-      html += "<ul>";
+    html += "<h4>Articles Vigitox</h4>"
+    html += "<ul>";
     <% articles.each do |article| %>
-      html += "<li><%= j(link_to(article['titre'], "#{vigitox}/articles/#{article['id']}")) + " (VIGITOX N°#{article['revue']})" %></li>";
+      html += "<li><%= j(link_to(article['titre'], "#{vigitox}/articles/#{article['id']}")) + " (N°#{article['revue']})" %></li>";
     <% end %>
       html += "</ul>";
   <% end %>
