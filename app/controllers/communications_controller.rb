@@ -6,7 +6,7 @@ class CommunicationsController < ApplicationController
   end
 
   def index
-    @communications = Communication.all
+    @communications = Communication.scoped
   end
 
   def show
@@ -60,6 +60,6 @@ class CommunicationsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def communication_params
-    params.require(:communication).permit(:titre, :publication, :fichier, :remove_file, :tags, :category_id)
+    params.require(:communication).permit(:titre, :publication, :fichier, :remove_file, :tags, :category_id, :published)
   end
 end

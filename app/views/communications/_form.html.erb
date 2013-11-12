@@ -18,8 +18,21 @@
     </div>
   </div>
 
-  <%= f.input :fichier, as: :file %>
-  <%= f.input :remove_file, as: :boolean, inline_label: "Effacer le fichier ?", label: false %>
+  <% if f.object.fichier? %>
+    <div class="form-group communication_fichier">
+      <%= f.label :fichier, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <p class="form-control-static"><%= link_to f.object.fichier_file_name, f.object.fichier.url %></p>
+      </div>
+    </div>
+
+    <%= f.input :fichier, as: :file, label: "Changer le fichier" %>
+    <%= f.input :remove_file, as: :boolean, inline_label: "Effacer le fichier ?", label: false %>
+  <% else %>
+    <%= f.input :fichier, as: :file %>
+  <% end -%>
+
+  <%= f.input :published, as: :boolean, label: "Publié?" %>
 
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">

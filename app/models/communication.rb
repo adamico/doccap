@@ -10,6 +10,7 @@ class Communication
   field :t, as: :titre, type: String
   field :st, as: :slugged_titre
   field :p, as: :publication, type: Date
+  field :pd, as: :published, type: Boolean
 
   belongs_to :category
 
