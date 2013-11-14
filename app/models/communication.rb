@@ -1,11 +1,9 @@
 class Communication
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Paperclip
   include Mongoid::Taggable
 
-  has_mongoid_attached_file :fichier,
-    storage: :dropbox, dropbox_credentials: Rails.root.join("config/dropbox.yml")
+  mount_uploader :fichier, FichierUploader
 
   field :t, as: :titre, type: String
   field :st, as: :slugged_titre
@@ -17,16 +15,9 @@ class Communication
   validates :titre, presence: true, uniqueness: true
   before_validation :generate_slugged_fields
 
-  attr_accessor :remove_file
-  before_save :perform_remove_file
-
   private
 
   def generate_slugged_fields
     self.slugged_titre ||= titre.parameterize
-  end
-
-  def perform_remove_file
-    self.fichier = nil if self.remove_file && !self.fichier.dirty?
   end
 end
