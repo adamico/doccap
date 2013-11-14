@@ -6,7 +6,7 @@ class CommunicationsController < ApplicationController
   end
 
   def index
-    @communications = Communication.scoped
+    @communications = Communication.includes(:category).desc(:publication)
   end
 
   def show
@@ -23,8 +23,8 @@ class CommunicationsController < ApplicationController
 
     respond_to do |format|
       if @communication.save
-        format.html { redirect_to @communication, notice: 'Communication was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @communication }
+        format.html { redirect_to communications_url, notice: "Communication #{@communication.titre} was successfully created." }
+        format.json { render action: 'show', status: :created, location: communications_url }
       else
         format.html { render action: 'new' }
         format.json { render json: @communication.errors, status: :unprocessable_entity }
@@ -37,7 +37,7 @@ class CommunicationsController < ApplicationController
   def update
     respond_to do |format|
       if @communication.update(communication_params)
-        format.html { redirect_to @communication, notice: 'Communication was successfully updated.' }
+        format.html { redirect_to communications_url, notice: "Communication #{@communication.titre} was successfully updated." }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
