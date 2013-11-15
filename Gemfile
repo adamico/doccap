@@ -57,13 +57,12 @@ gem 'bootstrap-sass', '~> 3.0.1.0.rc'
 gem "devise", github: "plataformatec/devise"
 #gem 'simple_form', github: "plataformatec/simple_form"
 gem 'simple_form', github: 'zlx/simple_form_bootstrap3'
-gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
-gem 'carrierwave-dropbox'
-gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
 gem 'mongoid_taggable'
 gem 'select2-rails', github: "argerim/select2-rails"
 gem "cancan", github: "ncri/cancan", branch: "2.0"
 gem "httparty"
+gem "s3_direct_upload"
+gem "fog"
 
 group :test, :development do
   gem "rspec-rails"

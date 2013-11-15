@@ -17,6 +17,7 @@
 //= require bootstrap
 //= require select2
 //= require common
+//= require s3_direct_upload
 //= require communications
 //= require home
 //= require_tree .

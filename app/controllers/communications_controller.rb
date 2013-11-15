@@ -23,7 +23,8 @@ class CommunicationsController < ApplicationController
 
     respond_to do |format|
       if @communication.save
-        format.html { redirect_to communications_url, notice: "Communication #{@communication.titre} was successfully created." }
+        format.html { redirect_to communications_url,
+                      notice: "Communication #{@communication.titre} was successfully created." }
         format.json { render action: 'show', status: :created, location: communications_url }
       else
         format.html { render action: 'new' }
@@ -60,6 +61,6 @@ class CommunicationsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def communication_params
-    params.require(:communication).permit(:titre, :publication, :fichier, :remove_file, :tags, :category_id, :published)
+    params.require(:communication).permit(:titre, :publication, :fichier_name, :fichier_url, :tags, :category_id, :published)
   end
 end

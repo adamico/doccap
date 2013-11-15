@@ -1,13 +1,14 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Titre:</strong>
+  <strong>Titre :</strong>
   <%= @communication.titre %>
 </p>
 
 <p>
-  <strong>Fichier:</strong>
-  <%= link_to @communication.fichier.path, @communication.fichier.url %>
+  <% if @communication.has_fichier_upload? %>
+    <strong>Fichier :</strong>
+    <%= link_to @communication.fichier.path, @communication.fichier.url %>
+  <% else %>
+  <% end -%>
 </p>
 
 <div class="btn-group">

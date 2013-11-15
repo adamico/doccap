@@ -1,5 +1,7 @@
 <%= simple_form_for @communication, html: {class: "form-horizontal", multipart: true} do |f| %>
   <%= f.error_notification %>
+  <%= f.input :fichier_url, as: :hidden %>
+  <%= f.input :fichier_name, as: :hidden %>
 
   <%= f.input :titre, autofocus: true %>
   <%= f.input :publication, label: "Publié le", input_html: {type: "date"} %>
@@ -18,30 +20,40 @@
     </div>
   </div>
 
-  <% if f.object.fichier? %>
-    <div class="form-group communication_fichier">
-      <%= f.label :fichier, class: "col-sm-2 control-label" %>
-      <div class="col-sm-10">
-        <p class="form-control-static"><%= link_to f.object.fichier.identifier, f.object.fichier.url %></p>
-      </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Fichier actuel</label>
+    <div class="col-sm-10">
+      <p class="form-control-static communication_fichier_name">
+        <%= link_to f.object.fichier_name, f.object.fichier_url if f.object.fichier_url.present? %>
+        <%= link_to "Effacer ce fichier", "#", class: "btn btn-danger btn-sm" %>
+      </p>
     </div>
-
-    <%= f.input :fichier, as: :file, label: "Changer le fichier" %>
-    <%= f.input :fichier_cache, as: :hidden %>
-    <%= f.input :remove_fichier, as: :boolean, inline_label: "Effacer le fichier ?", label: false %>
-  <% else %>
-    <%= f.input :fichier, as: :file %>
-  <% end -%>
+  </div>
 
   <%= f.input :published, as: :boolean, label: "Publié?" %>
 
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
       <%= f.button :submit, "Enregistrer", class: "btn-primary" %>
-
-      <%= link_to 'Retour au document', @communication, class: "btn btn-warning" unless f.object.new_record? %>
-      <%= link_to 'Retour à la liste', communications_path, class: "btn btn-danger" %>
     </div>
   </div>
-
 <% end %>
+
+<%= s3_uploader_form id: "s3-uploader" do %>
+  <%= label_tag :file, "Joindre un (nouveau) fichier" %>
+  <%= file_field_tag :file %>
+<% end %>
+
+<script id="template-upload" type="text/x-tmpl">
+<div id="file-{%=o.unique_id%}" class="upload">
+  {%=o.name%}
+  <div class="progress"><div class="bar" style="width: 0%"></div></div>
+</div>
+</script>
+
+<div class="clearfix">&nbsp;</div>
+
+<div class="btn-group">
+  <%= link_to 'Retour au document', @communication, class: "btn btn-warning" unless @communication.new_record? %>
+  <%= link_to 'Retour à la liste', communications_path, class: "btn btn-danger" %>
+</div>

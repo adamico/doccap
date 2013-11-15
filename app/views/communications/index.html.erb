@@ -13,22 +13,6 @@
   </thead>
 
   <tbody>
-    <% @communications.each do |communication| %>
-      <tr class=<%= !communication.fichier? ? "danger" : nil  %>>
-        <td><%= link_to communication.titre, communication %></td>
-        <td><%= l communication.publication %></td>
-        <td><%= communication.category %></td>
-        <td><%= communication.tags %></td>
-        <td><%#= link_to communication.fichier.path, communication.fichier.url if communication.published? %></td>
-        <td>
-          <div class="btn-group">
-            <%= link_to 'Edit', edit_communication_path(communication), class: "btn btn-warning btn-sm" if can?(:update, communication) %>
-            <%= link_to 'Destroy', communication, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" if can?(:destroy, communication) %>
-          </div>
-        </td>
-      </tr>
-    <% end %>
+    <%= render @communications %>
   </tbody>
 </table>
-
-<%= link_to 'Nouveau document', new_communication_path, class: "btn btn-primary" if can?(:create, :communications) %>

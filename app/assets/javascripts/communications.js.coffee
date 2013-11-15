@@ -1,6 +1,18 @@
 $ = jQuery
 
 $ ->
+  #fichier upload
+  $('#s3-uploader').S3Uploader()
+
+  $('#s3-uploader').bind "s3_upload_complete", (e, content) ->
+    console.dir content
+    $('#communication_fichier_url').val(content.url)
+    $('#communication_fichier_name').val(content.filename)
+
+  $('#s3-uploader').bind "s3_upload_failed", (e, content) ->
+    alert("#{content.filename} failed to upload : #{content.error_thrown}")
+
+  #tags
   for name in ["communication_tag"]
     $("##{name}s").select2
       minimumInputLength: 3

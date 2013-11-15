@@ -3,12 +3,12 @@ class Communication
   include Mongoid::Timestamps
   include Mongoid::Taggable
 
-  mount_uploader :fichier, FichierUploader
-
   field :t, as: :titre, type: String
-  field :st, as: :slugged_titre
+  field :st, as: :slugged_titre, type: String
   field :p, as: :publication, type: Date
   field :pd, as: :published, type: Boolean
+  field :fu, as: :fichier_url, type: String
+  field :fn, as: :fichier_name, type: String
 
   belongs_to :category
 
