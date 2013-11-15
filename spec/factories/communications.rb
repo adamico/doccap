@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :communication do
-    titre "MyString"
+    sequence(:titre) {|n| "communication#{n}"}
+    publication Date.today
   end
 end
