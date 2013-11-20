@@ -6,6 +6,10 @@ $ ->
 
   $('#s3-uploader').bind "s3_upload_complete", (e, content) ->
     console.dir content
+    html = "<div class='form-group'"
+    $('.form-group.communication_fichier_name').show()
+    $("a#communication_fichier_link").text(content.filename)
+    $("a#communication_fichier_link").attr("href", content.url)
     $('#communication_fichier_url').val(content.url)
     $('#communication_fichier_name').val(content.filename)
 

@@ -20,12 +20,12 @@
     </div>
   </div>
 
-  <div class="form-group">
+  <div class="form-group communication_fichier_name" style="display: none;">
     <label class="col-sm-2 control-label">Fichier actuel</label>
     <div class="col-sm-10">
-      <p class="form-control-static communication_fichier_name">
-        <%= link_to f.object.fichier_name, f.object.fichier_url if f.object.fichier_url.present? %>
-        <%= link_to "Effacer ce fichier", "#", class: "btn btn-danger btn-sm" %>
+      <p class="form-control-static">
+        <%= link_to "DUMMY", "#", id: "communication_fichier_link" %>
+        <%= link_to "Effacer ce fichier", "#", class: "btn btn-danger btn-sm", id: "communication_fichier_delete" %>
       </p>
     </div>
   </div>
@@ -40,7 +40,7 @@
 <% end %>
 
 <%= s3_uploader_form id: "s3-uploader" do %>
-  <%= label_tag :file, "Joindre un (nouveau) fichier" %>
+  <%= label_tag :file, "Joindre un#{@communication.fichier_url.present? ? ' (nouveau) ' : ' '}fichier" %>
   <%= file_field_tag :file %>
 <% end %>
 
