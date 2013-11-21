@@ -13,6 +13,7 @@ class Communication
   belongs_to :category
 
   validates :titre, presence: true, uniqueness: true
+  validates :publication, presence: true
   before_validation :generate_slugged_fields
 
   private
