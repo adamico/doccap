@@ -63,10 +63,12 @@ gem "cancan", github: "ncri/cancan", branch: "2.0"
 gem "httparty"
 gem "s3_direct_upload"
 gem "fog"
+gem 'unf'
 
 group :test, :development do
   gem "rspec-rails"
   gem "poltergeist", github: "jonleighton/poltergeist"
+  gem "dotenv-rails"
 end
 
 group :test do
@@ -79,13 +81,12 @@ group :test do
 end
 
 group :development do
-  gem "figaro"
+  gem "spring"
+  gem "spring-commands-rspec"
   gem "debugger"
   gem "pry-rails"
   gem "quiet_assets", ">= 1.0.1"
   gem 'better_errors'
-  gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
-  gem 'guard-bundler'
-  gem 'hub', :require=>nil
-  gem 'guard-rails'
+  gem 'binding_of_caller', platforms: [:mri_19, :mri_20, :rbx]
+  gem 'hub', require: nil
 end
