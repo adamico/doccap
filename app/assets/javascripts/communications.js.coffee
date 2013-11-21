@@ -5,13 +5,15 @@ $ ->
   $('#s3-uploader').S3Uploader()
 
   $('#s3-uploader').bind "s3_upload_complete", (e, content) ->
-    console.dir content
     html = "<div class='form-group'"
-    $('.form-group.communication_fichier_name').show()
+    $('.communication_fichier').show()
     $("a#communication_fichier_link").text(content.filename)
     $("a#communication_fichier_link").attr("href", content.url)
+    url = $("a#communication_fichier_delete").data("url")
+    $("a#communication_fichier_delete").attr("href", "#{url}?filepath=#{content.filepath.replace(/\/doccap\//, "")}")
     $('#communication_fichier_url').val(content.url)
     $('#communication_fichier_name').val(content.filename)
+    $('label.s3-uploader-file').text("Joindre un nouveau fichier")
 
   $('#s3-uploader').bind "s3_upload_failed", (e, content) ->
     alert("#{content.filename} failed to upload : #{content.error_thrown}")

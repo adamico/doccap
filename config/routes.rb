@@ -9,6 +9,8 @@ Doccap::Application.routes.draw do
   resources :communications
   get "tags", to: "communications#tags", as: "communication_tags"
 
+  get "destroy_fichier", to: "s3_direct_upload#destroy", as: "destroy_fichier"
+
   get "search", to: "home#search"
   root to: "home#index"
   # The priority is based upon order of creation: first created -> highest priority.
