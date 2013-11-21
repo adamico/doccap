@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Doccap::Application.config.secret_key_base = '8413a78b216480f612b6a11de9513fe0eff2890159d4381ab981ca16ea721ba769d55f1523d5fdefe9e0b8c958fc96621004823e0e1040a7493fc3ef10eb6f87'
+Doccap::Application.config.secret_key_base = ENV["SECRET_TOKEN"]
