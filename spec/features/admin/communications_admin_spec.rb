@@ -14,7 +14,7 @@ feature "Admin can manage communications" do
     visit communications_path
   end
 
-  scenario "create communication", focus: true do
+  scenario "create communication" do
     visit communications_path
     click_on "Nouveau document"
     click_on "Enregistrer"
@@ -25,5 +25,18 @@ feature "Admin can manage communications" do
     check "Publié?"
     click_on "Enregistrer"
     page.should have_content "succès"
+    page.current_path.should == communications_path
+  end
+
+  scenario "edit communication" do
+    pending
+  end
+
+  scenario "add tags" do
+    pending
+  end
+
+  scenario "attach/unattach file" do
+    pending
   end
 end

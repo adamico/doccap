@@ -22,7 +22,7 @@ class CommunicationsController < ApplicationController
 
   def create
     @communication = Communication.create(communication_params)
-    respond_with @communication
+    respond_with @communication, location: communications_url
   end
 
   # PATCH/PUT /communications/1
