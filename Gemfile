@@ -64,6 +64,7 @@ gem "httparty"
 gem "s3_direct_upload"
 gem "fog"
 gem 'unf'
+gem 'responders'
 
 group :test, :development do
   gem "rspec-rails"
