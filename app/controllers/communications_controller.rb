@@ -24,7 +24,7 @@ class CommunicationsController < ApplicationController
     respond_to do |format|
       if @communication.save
         format.html { redirect_to communications_url,
-                      notice: "Communication #{@communication.titre} was successfully created." }
+                      notice: "Communication #{@communication.titre} was succès created." }
         format.json { render action: 'show', status: :created, location: communications_url }
       else
         format.html { render action: 'new' }
