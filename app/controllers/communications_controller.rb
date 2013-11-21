@@ -1,4 +1,6 @@
 class CommunicationsController < ApplicationController
+  respond_to :html, :json
+  responders :flash, :http_cache
   load_and_authorize_resource
 
   def tags
@@ -19,18 +21,8 @@ class CommunicationsController < ApplicationController
   end
 
   def create
-    @communication = Communication.new(communication_params)
-
-    respond_to do |format|
-      if @communication.save
-        format.html { redirect_to communications_url,
-                      notice: "Communication #{@communication.titre} was succès created." }
-        format.json { render action: 'show', status: :created, location: communications_url }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @communication.errors, status: :unprocessable_entity }
-      end
-    end
+    @communication = Communication.create(communication_params)
+    respond_with @communication
   end
 
   # PATCH/PUT /communications/1

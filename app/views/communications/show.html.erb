@@ -4,7 +4,7 @@
 </p>
 
 <p>
-  <% if @communication.has_fichier_upload? %>
+  <% if @communication.fichier_name.present? %>
     <strong>Fichier :</strong>
     <%= link_to @communication.fichier.path, @communication.fichier.url %>
   <% else %>
