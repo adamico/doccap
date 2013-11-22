@@ -29,7 +29,14 @@ feature "Admin can manage communications" do
   end
 
   scenario "edit communication" do
-    pending
+    visit edit_communication_path(Communication.first)
+    fill_in "communication_titre", with: ""
+    click_on "Enregistrer"
+    page.should have_content "erreurs"
+    fill_in "communication_titre", with: "le titre"
+    click_on "Enregistrer"
+    page.should have_content "succès"
+    page.current_path.should == communications_path
   end
 
   scenario "add tags" do
