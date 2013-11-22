@@ -1,13 +1,13 @@
 <% if params["query"].present? %>
-  html = "<hr>\n<h3>Résultats de la recherche</h3>\n"
-  html += "<p>Terme(s) recherché(s) : '<%= params["query"] %>'</p>"
+  header = "<hr>\n<h3>Résultats de la recherche</h3>\n"
+  header += "<p>Terme(s) recherché(s) : '<%= params["query"] %>'</p>"
   <% if @articles.any? %>
-    html += "<h4>Articles Vigitox</h4>"
-    html += "<ul class='list-unstyled'>";
+    vigitox = "<h4>Articles Vigitox</h4>"
+    vigitox += "<ul class='list-unstyled'>";
     <% @articles.each do |article| %>
-      html += "<%= j render "article", article: article, vigitox: @vigitox %>";
+      vigitox += "<%= j render "article", article: article, vigitox: @vigitox %>";
     <% end %>
-      html += "</ul>";
+      vigitox += "</ul>";
   <% end %>
-  $("#search_results").html(html);
+  $("#search_results").html(header + vigitox);
 <% end %>
