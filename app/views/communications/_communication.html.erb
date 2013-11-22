@@ -1,4 +1,4 @@
-<tr class=<%= communication.published == "0" ? "danger" : (communication.fichier_url ? nil : "warning")  %>>
+<tr class=<%= communication.published? ? (communication.fichier_url.present? ? "" : "warning") : "danger" %>>
   <td><%= link_to communication.titre, communication %></td>
   <td><%= l communication.publication %></td>
   <td><%= communication.category %></td>
