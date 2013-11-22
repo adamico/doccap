@@ -25,27 +25,17 @@ class CommunicationsController < ApplicationController
     respond_with @communication, location: communications_url
   end
 
-  # PATCH/PUT /communications/1
-  # PATCH/PUT /communications/1.json
   def update
-    respond_to do |format|
-      if @communication.update(communication_params)
-        format.html { redirect_to communications_url, notice: "Communication #{@communication.titre} was successfully updated." }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @communication.errors, status: :unprocessable_entity }
-      end
-    end
+    @communication.update(communication_params)
+    respond_with @communication, location: communications_url
   end
 
-  # DELETE /communications/1
-  # DELETE /communications/1.json
   def destroy
-    @communication.destroy
-    respond_to do |format|
-      format.html { redirect_to communications_url }
-      format.json { head :no_content }
+    if destroy_fichier(@communication.fichier_url)
+      @communication.destroy
+      respond_with @communication, location: communications_url
+    else
+      redirect_to communications_url, alert: "Le document n'a pas été détruit car la destruction du fichier joint #{@communication.fichier_name} a échoué."
     end
   end
 

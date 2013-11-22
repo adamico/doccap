@@ -10,7 +10,7 @@ $ ->
     $("a#communication_fichier_link").text(content.filename)
     $("a#communication_fichier_link").attr("href", content.url)
     url = $("a#communication_fichier_delete").data("url")
-    $("a#communication_fichier_delete").attr("href", "#{url}?filepath=#{content.filepath.replace(/\/doccap\//, "")}")
+    $("a#communication_fichier_delete").attr("href", "#{url}?filepath=#{content.url}")
     $('#communication_fichier_url').val(content.url)
     $('#communication_fichier_name').val(content.filename)
     $('label.s3-uploader-file').text("Joindre un nouveau fichier")
