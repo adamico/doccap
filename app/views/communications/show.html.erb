@@ -1,18 +1,22 @@
-<p>
-  <strong>Titre :</strong>
-  <%= @communication.titre %>
-</p>
+<h2><%= @communication.titre %></h2>
 
-<p>
+<dl class="dl-horizontal">
   <% if @communication.fichier_name.present? %>
-    <strong>Fichier :</strong>
-    <%= link_to @communication.fichier.path, @communication.fichier.url %>
-  <% else %>
+  <dt>Fichier</dt>
+  <dd><%= link_to @communication.fichier_name, @communication.fichier_url %></dd>
+  <% end -%>
+  <dt>Publié le</dt>
+  <dd><%= l @communication.publication %></dd>
+  <dt>Catégorie</dt>
+  <dd><%= @communication.category %></dd>
+  <% if @communication.tags.present? %>
+  <dt>Mot(s) clé(s)</dt>
+  <dd><%= @communication.tags %></dd>
   <% end -%>
 </p>
 
 <div class="btn-group">
-  <%= link_to 'Edit', edit_communication_path(@communication), class: "btn btn-warning" if can?(:update, @communication) %>
-  <%= link_to 'Destroy', @communication, method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" if can?(:destroy, @communication) %>
-  <%= link_to 'Back', communications_path, class: "btn btn-default" %>
+  <%= link_to 'Modifier', edit_communication_path(@communication), class: "btn btn-warning" if can?(:update, @communication) %>
+  <%= link_to 'Détruire', @communication, method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" if can?(:destroy, @communication) %>
+  <%= link_to 'Voir la liste', communications_path, class: "btn btn-default" %>
 </div>
