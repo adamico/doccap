@@ -20,6 +20,14 @@ class Communication
     published == "oui"
   end
 
+  def self.published
+    where(published: "oui")
+  end
+
+  def self.search(query)
+    published.where(slugged_titre: /.*#{query}.*/i)
+  end
+
   private
 
   def generate_slugged_fields

@@ -1,13 +1,32 @@
 <% if params["query"].present? %>
-  header = "<hr>\n<h3>Résultats de la recherche</h3>\n"
-  header += "<p>Terme(s) recherché(s) : '<%= params["query"] %>'</p>"
+  header = "<hr>\n<h3>Résultats de la recherche</h3>\n";
+  header += "<p>Terme(s) recherché(s) : '<%= params["query"] %>'</p>";
+  html = header;
+  results = "";
   <% if @articles.any? %>
-    vigitox = "<h4>Articles Vigitox</h4>"
+    vigitox = "<h4>Articles Vigitox</h4>";
     vigitox += "<ul class='list-unstyled'>";
     <% @articles.each do |article| %>
       vigitox += "<%= j render "article", article: article, vigitox: @vigitox %>";
     <% end %>
       vigitox += "</ul>";
+      results += vigitox;
+  <% else %>
+    results += "<h4>Aucun résultat dans Vigitox</h4>"
   <% end %>
-  $("#search_results").html(header + vigitox);
+  <% if @communications_by_category.any? %>
+    communications = ""
+    <% @communications_by_category.each do |category, comms| %>
+      communications += "<h4><%= category %></h4>";
+      communications += "<ul class='list-unstyled'>";
+      <% comms.each do |communication| %>
+        communications += "<%= j render "communication", communication: communication %>";
+      <% end %>
+      communications += "</ul>";
+    <% end %>
+    results += communications;
+  <% end %>
+  html += results;
+  console.log(html);
+  $("#search_results").html(html);
 <% end %>

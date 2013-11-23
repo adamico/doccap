@@ -12,6 +12,9 @@ Doccap::Application.routes.draw do
   get "destroy_fichier", to: "s3_direct_upload#destroy", as: "destroy_fichier"
 
   get "search", to: "home#search"
+  get "biblio", to: "home#biblio"
+  get "coord", to: "home#coord"
+
   root to: "home#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
