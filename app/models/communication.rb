@@ -14,6 +14,7 @@ class Communication
 
   validates :titre, presence: true, uniqueness: true
   validates :publication, presence: true
+  validates :category_id, presence: true
   before_validation :generate_slugged_fields
 
   def is_published?
