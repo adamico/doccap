@@ -10,7 +10,7 @@ class HomeController < ApplicationController
   def search
     vigitox = "http://vigitox.herokuapp.com"
     @vigitox = vigitox
-    @articles = HTTParty.get("#{@vigitox}/api/v1/articles?q=#{params['query']}")
     @communications_by_category = Communication.search(params['query']).group_by {|comm| comm.category.name }
+    @articles = HTTParty.get("#{@vigitox}/api/v1/articles?q=#{params['query'].parameterize}")
   end
 end
