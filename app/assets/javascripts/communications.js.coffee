@@ -2,6 +2,11 @@ $ = jQuery
 
 $ ->
   #fichier upload
+  if fichier_name = $("#communication_fichier_link").data("fichier-name")
+    $(".communication_fichier").show()
+    $("a#communication_fichier_link").text(fichier_name)
+    $("a#communication_fichier_link").attr("href", $("#communication_fichier_link").data("fichier-url"))
+
   $('#s3-uploader').S3Uploader()
 
   $('#s3-uploader').bind "s3_upload_complete", (e, content) ->

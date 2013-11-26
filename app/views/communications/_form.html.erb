@@ -33,7 +33,7 @@
   <div class="col-sm-2">Fichier actuel</div>
   <div class="col-sm-10">
     <p>
-      <%= link_to "DUMMY", "#", id: "communication_fichier_link" %>
+      <%= link_to "DUMMY", "#", id: "communication_fichier_link", data: {fichier_name: @communication.fichier_name, fichier_url: @communication.fichier_url} %>
       <%= link_to "Effacer ce fichier", "#", data: {confirm: 'Etes-vous sûr ?', url: destroy_fichier_path}, remote: true,
         class: "btn btn-danger btn-sm", id: "communication_fichier_delete" %>
     </p>
