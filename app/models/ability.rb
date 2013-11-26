@@ -4,6 +4,7 @@ class Ability
   def initialize(user)
     if user
       can :read, :all
+      can :access, :home
       if user.admin?
         can :access, :all
         cannot :destroy, :users, id: user.id
