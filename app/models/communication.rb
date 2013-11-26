@@ -25,7 +25,7 @@ class Communication
     where(published: "oui")
   end
 
-  def self.search(query)
+  def self.search_by_titre_or_tag(query)
     by_titre = published.where(slugged_titre: /.*#{query}.*/i)
     by_tag = tagged_with_any(query)
     return by_titre + by_tag
