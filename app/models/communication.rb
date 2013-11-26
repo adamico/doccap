@@ -26,7 +26,9 @@ class Communication
   end
 
   def self.search(query)
-    published.where(slugged_titre: /.*#{query}.*/i)
+    by_titre = published.where(slugged_titre: /.*#{query}.*/i)
+    by_tag = tagged_with_any(query)
+    return by_titre + by_tag
   end
 
   private
