@@ -7,12 +7,15 @@ class CoordonneesController < ApplicationController
     @coordonnees = Coordonnee.includes(:coord_category).asc(:libelle)
   end
 
+  def show
+  end
+
   def new
   end
 
   def create
     @coordonnee = Coordonnee.create(coordonnee_params)
-    respond_with @coordonnee, location: coordonnees_url
+    respond_with @coordonnee
   end
 
   def edit
@@ -20,10 +23,10 @@ class CoordonneesController < ApplicationController
 
   def update
     @coordonnee.update(coordonnee_params)
-    respond_with @coordonnee, location: coordonnees_url
+    respond_with @coordonnee
   end
 
   def coordonnee_params
-    params.require(:coordonnee).permit(:libelle, :coord_category_id)
+    params.require(:coordonnee).permit(:libelle, :content, :coord_category_id)
   end
 end

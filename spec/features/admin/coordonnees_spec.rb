@@ -16,11 +16,15 @@ feature "Coordonnées management" do
   scenario "creation" do
     visit new_coordonnee_path
     fill_in "coordonnee_libelle", with: ""
+    fill_in "coordonnee_content", with: ""
     click_on "Enregistrer"
     page.should have_content "erreurs"
     fill_in "coordonnee_libelle", with: "ddpp"
+    content = "Bla, bla and bla"
+    fill_in "coordonnee_content", with: content
     click_on "Enregistrer"
     page.should have_content "succès"
+    page.should have_content content
   end
 
   scenario "edit" do

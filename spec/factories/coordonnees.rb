@@ -3,6 +3,7 @@
 FactoryGirl.define do
   factory :coordonnee do
     sequence(:libelle) {|i| "coordonnee#{i}"}
+    content "<i>le content</i>"
     coord_category nil
   end
 end
