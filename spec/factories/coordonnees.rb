@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :coordonnee do
-    libelle "MyString"
+    sequence(:libelle) {|i| "coordonnee#{i}"}
     coord_category nil
   end
 end

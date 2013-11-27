@@ -4,9 +4,13 @@ feature "Coordonnées management" do
 
   let!(:admin)      {create(:admin)}
   let!(:coordonnee) {create(:coordonnee)}
+  let(:range)       {(1001..1010)}
 
   background do
     login admin
+    range.each do |i|
+      create(:coordonnee, libelle: "coordonnee#{i}")
+    end
   end
 
   scenario "creation" do
@@ -28,4 +32,12 @@ feature "Coordonnées management" do
     click_on "Enregistrer"
     page.should have_content "succès"
   end
+
+  scenario "browse coordonnees" do
+    visit coordonnees_path
+    range.each do |i|
+      page.should have_content "coordonnee#{i}"
+    end
+  end
+
 end
