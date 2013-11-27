@@ -1,0 +1,17 @@
+<h1>Liste coordonnees</h1>
+
+<table class="table table-condensed table-striped">
+  <thead>
+    <tr>
+      <th>Libellé</th>
+      <th>Catégorie</th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render @coordonnees %>
+  </tbody>
+</table>
+
+<%= link_to "Nouvelle coordonnée", new_coordonnee_path, class: "btn btn-primary" %>

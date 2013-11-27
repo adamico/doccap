@@ -7,6 +7,7 @@ Doccap::Application.routes.draw do
   end
 
   resources :communications
+  resources :coordonnees
   get "tags", to: "communications#tags", as: "communication_tags"
 
   get "destroy_fichier", to: "s3_direct_upload#destroy", as: "destroy_fichier"

@@ -1,0 +1,10 @@
+<tr>
+  <td><%= coordonnee.libelle %></td>
+  <td><%= coordonnee.coord_category %></td>
+  <td>
+    <div class="btn-group">
+      <%= link_to 'Edit', edit_coordonnee_path(coordonnee), class: "btn btn-warning btn-sm" if can?(:update, coordonnee) %>
+      <%= link_to 'Destroy', coordonnee, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" if can?(:destroy, coordonnee) %>
+    </div>
+  </td>
+</tr>
