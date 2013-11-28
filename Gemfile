@@ -65,6 +65,7 @@ gem "s3_direct_upload"
 gem "fog"
 gem 'unf'
 gem 'responders'
+gem 'ckeditor', github: "galetahub/ckeditor"
 
 group :test, :development do
   gem "rspec-rails"

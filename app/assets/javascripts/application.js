@@ -15,6 +15,8 @@
 //= require jquery.turbolinks
 //= require turbolinks
 //= require bootstrap
+//= require ckeditor/override
+//= require ckeditor/init
 //= require select2
 //= require common
 //= require s3_direct_upload
