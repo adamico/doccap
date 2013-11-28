@@ -84,10 +84,10 @@ end
 group :development do
   gem "spring"
   gem "spring-commands-rspec"
-  gem "debugger"
   gem "pry-rails"
   gem "quiet_assets", ">= 1.0.1"
   gem 'better_errors'
+  gem 'byebug'
   gem 'binding_of_caller', platforms: [:mri_19, :mri_20, :rbx]
   gem 'hub', require: nil
 end
