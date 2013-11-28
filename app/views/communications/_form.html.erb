@@ -5,7 +5,17 @@
 
   <%= f.input :titre, autofocus: true %>
   <%= f.input :publication, label: "Publié le", input_html: {type: "date"} %>
-  <%= f.association :category, label: "Type", collection: Category.asc(:name) %>
+
+  <div class="form-group select required communication_category" id="communication_category_id_field">
+    <%= f.label :category_id, "Catégorie", class: "control-label col-lg-2" %>
+    <div class="col-lg-3">
+      <%= f.hidden_field :category_id, data: {placeholder: "Choisir une catégorie",
+          load: f.object.category.try(:name_and_id).to_json, source: categories_url(format: :json)}  %>
+    </div>
+    <div class="col-lg-3">
+      <%= link_to "Nouvelle catégorie", new_category_path, data: {toggle: "modal"}, title: "Nouvelle catégorie", class: "btn btn-default category_create" %>
+    </div>
+  </div>
 
   <div class="form-group communication_tags">
     <%= f.label :tags, "Mots clés", class: "control-label col-lg-2" %>
@@ -59,6 +69,6 @@
 <div class="clearfix">&nbsp;</div>
 
 <div class="btn-group">
-  <%= link_to 'Retour au document', @communication, class: "btn btn-warning" unless @communication.new_record? %>
-  <%= link_to 'Retour à la liste', communications_path, class: "btn btn-danger" %>
+  <%= link_to 'Retour au document', @communication,
+    class: "btn btn-warning" unless @communication.new_record? %>
 </div>

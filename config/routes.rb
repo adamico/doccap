@@ -2,12 +2,14 @@ Doccap::Application.routes.draw do
   devise_for :users
 
   as :user do
-    get "login"  => "devise/sessions#new",     as: "login"
-    get "logout" => "devise/sessions#destroy", as: "logout"
+    get "login",  to: "devise/sessions#new",      as: "login"
+    get "logout", to:  "devise/sessions#destroy", as: "logout"
   end
 
   resources :communications
   resources :coordonnees
+  resources :categories
+
   get "tags", to: "communications#tags", as: "communication_tags"
 
   get "destroy_fichier", to: "s3_direct_upload#destroy", as: "destroy_fichier"

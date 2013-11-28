@@ -43,3 +43,104 @@ $ ->
           page_limit: 10
         results: (data, page) ->
           return {results: data}
+
+  # category
+  $("#communication_category_id").select2
+    width: "100%"
+    initSelection : (element, callback) ->
+      preload = element.data("load")
+      callback(preload)
+    ajax:
+      url: $("#communication_category_id").data("source")
+      dataType: "json"
+      data: (term, page) ->
+        q: term
+        page_limit: 10
+      results: (data, page) ->
+        return {results: data}
+  #@on "change", (e) =>
+    #if e.val then activateCorrespondantEdit(e.val, name) else $("#dossier_#{name}_id_field .corr_update").hide()
+  $("#communication_category_id_field").remoteCategoryForm()
+
+$.widget "doccap.remoteCategoryForm",
+
+  _create: ->
+    dom_widget = @element
+    @element.find(".category_create").unbind().bind "click", (e) =>
+      @_bindModalOpening e, $(e.target).attr("href")
+
+  _bindModalOpening: (e, url) ->
+    console.log("bindmodalopening started")
+    e.preventDefault()
+    dialog = @_getModal()
+
+    setTimeout(=>
+      console.log("timeout")
+      $.ajax
+        url: url
+        beforeSend: (xhr) ->
+          xhr.setRequestHeader "Accept", "text/javascript"
+        success: (data, status, xhr) =>
+          dialog.find(".modal-body").html(data)
+          @_bindFormEvents()
+        error: (xhr, status, error) ->
+          dialog.find(".modal-body").html(xhr.responseText)
+        dataType: "text"
+      , 200)
+
+  _bindFormEvents: ->
+    console.log("started bindFormEvents")
+    dialog = @_getModal()
+    form = dialog.find("form")
+    saveButtonText = "Enregistrer"
+    dialog.find('.form-actions').remove()
+
+    form.attr("data-remote", true)
+    dialog.find('#modal-label').text form.data('title')
+    dialog.find(".save-action").unbind().click(->
+      form.submit()
+      return false
+    ).html(saveButtonText)
+
+    form.bind "ajax:complete", (e, xhr, status) =>
+      if status is "error"
+        dialog.find(".modal-body").html xhr.responseText
+        @_bindFormEvents()
+      else
+        json = $.parseJSON xhr.responseText
+        category_label = json.label
+        category_id = json.id["$oid"]
+        $select = @element.find("#communication_category_id")
+        $select.select2("data", {id: category_id, text: category_label})
+        @_trigger("success")
+        dialog.modal("hide")
+
+  _getModal: ->
+    console.log("launched _getModal")
+    unless @dialog
+      @dialog = $('<div id="category_modal" class="modal fade" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="modal-label">...<h3>
+              </div>
+              <div class="modal-body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <a href="#" class="btn btn-primary save-action">...</a>
+                <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Fermer</button>
+              </div>
+            </div>
+          </div>
+        </div>')
+        .modal(
+          keyboard: true
+          backdrop: true
+          show: true
+        ).on "hidden.bs.modal", =>
+          @dialog.remove()
+          @dialog = null
+    console.log("dialog loaded with _getModal func")
+    return @dialog

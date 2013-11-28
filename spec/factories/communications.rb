@@ -4,5 +4,6 @@ FactoryGirl.define do
   factory :communication do
     sequence(:titre) {|n| "communication#{n}"}
     publication Date.today
+    category
   end
 end
