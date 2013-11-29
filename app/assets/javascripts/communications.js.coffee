@@ -45,7 +45,14 @@ $ ->
           return {results: data}
 
   # category
-  $("#communication_category_id").select2
+  $("#communication_category_id").attachCategorySelect2()
+  $("#communication_category_id_field").remoteCategoryForm()
+
+  category_id = $("#communication_category_id").val()
+  activateCategoryEdit(category_id)
+
+$.fn.attachCategorySelect2 = ->
+  @select2
     width: "100%"
     initSelection : (element, callback) ->
       preload = element.data("load")
@@ -58,9 +65,18 @@ $ ->
         page_limit: 10
       results: (data, page) ->
         return {results: data}
-  #@on "change", (e) =>
-    #if e.val then activateCorrespondantEdit(e.val, name) else $("#dossier_#{name}_id_field .corr_update").hide()
-  $("#communication_category_id_field").remoteCategoryForm()
+  @on "change", (e) =>
+    if e.added
+      category_id = e.added.id["$oid"]
+      console.log "Category changed : #{category_id}"
+      activateCategoryEdit(category_id)
+    else
+      $("#communication_category_id_field .category_update").hide()
+
+activateCategoryEdit = (category_id) ->
+  $edit_btn = $("#communication_category_id_field .category_update")
+  $edit_btn.attr("href", "/categories/#{category_id}/edit")
+  if category_id then $edit_btn.show() else $edit_btn.hide()
 
 $.widget "doccap.remoteCategoryForm",
 
@@ -68,6 +84,13 @@ $.widget "doccap.remoteCategoryForm",
     dom_widget = @element
     @element.find(".category_create").unbind().bind "click", (e) =>
       @_bindModalOpening e, $(e.target).attr("href")
+
+    @element.find(".category_update").unbind().bind "click", (e) =>
+      if (category_id = $("#communication_category_id").val())
+        console.dir category_id
+        @_bindModalOpening e, $(e.target).attr("href").replace('__ID__', category_id)
+      else
+        e.preventDefault()
 
   _bindModalOpening: (e, url) ->
     console.log("bindmodalopening started")
@@ -110,6 +133,9 @@ $.widget "doccap.remoteCategoryForm",
         json = $.parseJSON xhr.responseText
         category_label = json.label
         category_id = json.id["$oid"]
+        $edit_btn = $("#communication_category_id_field .category_update")
+        $edit_btn.attr("href", "/categories/#{category_id}/edit")
+        $edit_btn.show()
         $select = @element.find("#communication_category_id")
         $select.select2("data", {id: category_id, text: category_label})
         @_trigger("success")

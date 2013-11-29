@@ -28,7 +28,7 @@ feature "Admin can manage communications" do
     page.current_path.should == communications_path
   end
 
-  scenario "add new category", js: true, focus: true do
+  scenario "add new category", js: true do
     visit new_communication_path
     click_on "Nouvelle catégorie"
     within ".modal" do
@@ -36,6 +36,21 @@ feature "Admin can manage communications" do
       click_on "Enregistrer"
     end
     page.should have_content "lacat"
+  end
+
+  scenario "edit category", js: true, focus: true do
+    visit new_communication_path
+    click_on "Nouvelle catégorie"
+    within ".modal" do
+      fill_in "category_name", with: "lacat"
+      click_on "Enregistrer"
+    end
+    click_on "Modifier catégorie"
+    within ".modal" do
+      fill_in "category_name", with: "lautrecat"
+      click_on "Enregistrer"
+    end
+    page.should have_content "lautrecat"
   end
 
   scenario "edit communication" do

@@ -13,7 +13,10 @@
           load: f.object.category.try(:name_and_id).to_json, source: categories_url(format: :json)}  %>
     </div>
     <div class="col-lg-3">
-      <%= link_to "Nouvelle catégorie", new_category_path, data: {toggle: "modal"}, title: "Nouvelle catégorie", class: "btn btn-default category_create" %>
+      <%= link_to content_tag(:i, nil, class: "icon-plus") + "Nouvelle catégorie", new_category_path, data: {target: "#category_modal", toggle: "modal"}, title: "Nouvelle catégorie", class: "btn btn-default category_create" %>
+      <%= link_to content_tag(:i, nil, class: "icon-pencil") + "Voir/modifier",
+        edit_category_path(id: "__ID__"), data: {target: "#category_modal", toggle: "modal"},
+        title: "Modifier catégorie", class: "btn btn-default category_update" %>
     </div>
   </div>
 
