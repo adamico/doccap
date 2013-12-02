@@ -1,4 +1,12 @@
 class CoordCategory
   include Mongoid::Document
-  field :name, type: String
+  include Mongoid::Tree
+  include Slug
+
+  field :name
+  field :slug
+
+  def to_s
+    name
+  end
 end

@@ -66,6 +66,7 @@ gem "fog"
 gem 'unf'
 gem 'responders'
 gem 'ckeditor', github: "galetahub/ckeditor"
+gem "mongoid-tree", github: "benedikt/mongoid-tree", branch: "mongoid-4.0"
 
 group :test, :development do
   gem "rspec-rails"
