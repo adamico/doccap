@@ -14,7 +14,7 @@ feature "Search" do
     pending
   end
 
-  scenario "returns results in communications records with js", js: true, focus: true do
+  scenario "returns results in communications records with js", js: true, slow: true do
     visit biblio_path
     fill_in "query", with: "cyanures"
     click_on "OK"
