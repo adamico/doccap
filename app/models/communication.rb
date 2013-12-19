@@ -26,9 +26,15 @@ class Communication
   end
 
   def self.search_by_titre_or_tag(query)
-    by_titre = published.where(slugged_titre: /.*#{query}.*/i)
-    by_tag = tagged_with_any(query)
-    return by_titre + by_tag
+    (self.by_titre(query) + self.by_tag(query)).uniq
+  end
+
+  def self.by_titre(query)
+    published.where(slugged_titre: /.*#{query}.*/i)
+  end
+
+  def self.by_tag(query)
+    published.tagged_with_any(/.*#{query}.*/i)
   end
 
   private
