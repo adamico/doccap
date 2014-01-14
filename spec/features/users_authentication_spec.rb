@@ -5,13 +5,13 @@ feature "Users authentication" do
 
   scenario "user must login" do
     visit root_path
-    page.should have_content "devez vous connecter"
+    page.should have_content("entrer email et mot de passe")
     login user
-    page.should have_content /connecté/i
+    page.should have_content(/connecté/i)
   end
 
   scenario "users cannot login with incorrect credentials" do
     login User.new
-    page.should have_content /identifiant ou mot de passe incorrect/i
+    page.should have_content(/identifiant ou mot de passe incorrect/i)
   end
 end
