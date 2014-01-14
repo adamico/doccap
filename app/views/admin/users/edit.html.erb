@@ -1,0 +1,5 @@
+<h1>Modification utilisateur: <%= @user.email %></h1>
+
+<%= render 'form', user: @user %>
+
+<%= link_to 'Retour à la liste', admin_users_path %>

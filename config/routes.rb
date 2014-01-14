@@ -18,6 +18,12 @@ Doccap::Application.routes.draw do
   get "biblio", to: "home#biblio"
   get "coord", to: "home#coord"
 
+  namespace :admin do
+    resources :users do
+      put 'approve', on: :member
+    end
+  end
+
   root to: "home#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

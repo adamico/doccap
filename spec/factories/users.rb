@@ -4,9 +4,13 @@ FactoryGirl.define do
     password "mypassword01"
     password_confirmation "mypassword01"
 
-    factory :admin do
-      sequence(:email) {|n| "admin#{n}@example.com"}
-      admin true
+    factory :approved_user do
+      approved true
+
+      factory :admin do
+        sequence(:email) {|n| "admin#{n}@example.com"}
+        admin true
+      end
     end
   end
 end

@@ -1,0 +1,12 @@
+<%= simple_form_for([:admin, user], html: {class: "form-vertical"}) do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :email, autofocus: true, autocomplete: "off" %>
+  <%= f.input :password, autocomplete: "off" %>
+  <%= f.input :password_confirmation %>
+  <%= f.input :current_password unless f.object.new_record? %>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Enregistrer" %>
+  </div>
+<% end %>

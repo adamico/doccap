@@ -30,8 +30,8 @@ feature "Users admin" do
     within "#user_#{other_user.id}" do
       click_link "Modifier"
     end
-    fill_in "Email", with: "lambda@test.com"
-    fill_in "Mot de passe actuel", with: other_user.password
+    fill_in "user_email", with: "lambda@test.com"
+    fill_in "user_current_password", with: other_user.password
     click_button "Enregistrer"
     page.should have_content "L'utilisateur lambda@test.com a été modifié avec succès."
   end
@@ -50,14 +50,5 @@ feature "Users admin" do
     within "#user_#{admin.id}" do
       page.should_not have_content "Détruire"
     end
-  end
-
-  scenario "can assign users roles" do
-    role = create(:role)
-    member = create(:member)
-    visit edit_admin_user_path(member)
-    check role.name
-    click_button "Enregistrer"
-    page.should have_content role.name
   end
 end
