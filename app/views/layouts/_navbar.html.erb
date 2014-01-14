@@ -1,26 +1,42 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <% if current_user %>
       <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-doccap-collapse">
         <%= content_tag :span, "Menu", class: "sr-only" %>
         <% 3.times do %>
           <%= content_tag :span, nil, class: "icon-bar" %>
         <% end %>
       </button>
-      <% end %>
       <%= link_to "Doccap", root_path, class: "navbar-brand" %>
     </div>
     <div class="collapse navbar-collapse" id="navbar-doccap-collapse">
-      <% if current_user %>
-      <ul class="nav navbar-nav">
-        <li><%= link_to "Recherche documents", "/biblio" %></li>
-        <li><%= link_to "Coordonnées utiles", "/coord" %></li>
-      </ul>
-      <% end %>
-
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/intranet">Intranet</a></li>
+        <% if current_user %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Intranet <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Accueil", intranet_path %></li>
+              <li class="divider"></li>
+              <li><%= link_to "Recherche documents", biblio_path %></li>
+              <li><%= link_to "Coordonnées utiles", coord_path %></li>
+            </ul>
+          </li>
+          <% if current_user.admin? %>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Tableau de bord", "#" %></li>
+                <li class="divider"></li>
+                <li><%= link_to "Utilisateurs", admin_users_path %></li>
+                <li><%= link_to "Communications", communications_path %></li>
+              </ul>
+            </li>
+          <% end %>
+          <li><%= link_to "Déconnexion", logout_path %></li>
+
+        <% else %>
+          <li><%= link_to "Connexion", login_path %></li>
+        <% end -%>
       </ul>
     </div>
   </div>
