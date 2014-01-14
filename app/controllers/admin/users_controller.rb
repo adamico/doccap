@@ -1,23 +1,27 @@
 class Admin::UsersController < ApplicationController
+  after_action :verify_authorized, except: :index
   before_action :set_user, only: [:approve, :show, :edit, :update, :destroy]
-  load_and_authorize_resource
 
   def index
     @users = params[:approved] ? User.where(approved: false) : User.all
   end
 
   def approve
+    authorize @user, :create?
     @user.approve!
     redirect_to admin_users_url, notice: "Utilisateur '#{@user.email}' approuvé avec succès."
   end
 
   def show
+    authorize @user
   end
 
   def edit
+    authorize @user
   end
 
   def update
+    authorize @user
     if @user.update_with_password(user_params)
       redirect_to admin_users_url, notice: "L'utilisateur #{@user.email} a été modifié avec succès."
     else
@@ -26,6 +30,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
+    authorize @user
     @user.destroy
     redirect_to admin_users_url
   end
@@ -38,10 +43,6 @@ class Admin::UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    if current_user.admin?
-      params.require(:user).permit(:email, :password, :password_confirmation, :current_password, :approved)
-    else
-      params.require(:user).permit(:email, :password, :password_confirmation, :current_password)
-    end
+    params.require(:user).permit(:email, :password, :password_confirmation, :current_password, :approved)
   end
 end

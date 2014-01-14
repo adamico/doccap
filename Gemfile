@@ -70,6 +70,7 @@ gem 'unf'
 gem 'responders'
 gem 'ckeditor', github: "galetahub/ckeditor"
 gem "mongoid-tree", github: "benedikt/mongoid-tree", branch: "mongoid-4.0"
+gem "pundit", github: "elabs/pundit"
 
 group :test, :development do
   gem "rspec-rails"

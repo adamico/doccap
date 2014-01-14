@@ -1,19 +1,16 @@
 require "application_responder"
 
 class ApplicationController < ActionController::Base
+  include Pundit
+
   self.responder = ApplicationResponder
   respond_to :html
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  enable_authorization unless: :devise_controller?
 
-  rescue_from CanCan::Unauthorized do |exception|
-    Rails.logger.debug "Access denied on #{exception.action} #{exception.subject.inspect}"
-    redirect_to login_url, alert: exception.message
-  end
-
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def destroy_fichier(url)
     if url.present?
@@ -26,6 +23,11 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def user_not_authorized
+    flash[:error] = "Vous n'êtes pas autorisé !"
+    redirect_to request.headers["Referer"] || root_path
+  end
 
   def get_file_path(url)
     URI.decode(url).gsub(/https:\/\/#{region}.amazonaws.com\/#{bucket}\//, "")

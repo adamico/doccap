@@ -20,6 +20,13 @@ GIT
     database_cleaner (1.2.0)
 
 GIT
+  remote: git://github.com/elabs/pundit.git
+  revision: 055509ea3afcff2cbb0f20dff0b9468a9de63585
+  specs:
+    pundit (0.2.1)
+      activesupport (>= 3.0.0)
+
+GIT
   remote: git://github.com/galetahub/ckeditor.git
   revision: fcbc354928baeccbac98089c4b2fb0221b088955
   specs:
@@ -380,6 +387,7 @@ DEPENDENCIES
   newrelic_rpm
   poltergeist!
   pry-rails
+  pundit!
   quiet_assets (>= 1.0.1)
   rails (= 4.1.0.beta1)
   rails_12factor
