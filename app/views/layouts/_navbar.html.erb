@@ -11,12 +11,17 @@
       <% end %>
       <%= link_to "Doccap", root_path, class: "navbar-brand" %>
     </div>
-    <% if current_user %>
     <div class="collapse navbar-collapse" id="navbar-doccap-collapse">
+      <% if current_user %>
       <ul class="nav navbar-nav">
         <li><%= link_to "Recherche documents", "/biblio" %></li>
         <li><%= link_to "Coordonnées utiles", "/coord" %></li>
       </ul>
-    <% end %>
+      <% end %>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/intranet">Intranet</a></li>
+      </ul>
+    </div>
   </div>
 </nav>

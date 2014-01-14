@@ -14,9 +14,11 @@ Doccap::Application.routes.draw do
 
   get "destroy_fichier", to: "s3_direct_upload#destroy", as: "destroy_fichier"
 
-  get "search", to: "home#search"
-  get "biblio", to: "home#biblio"
+  get "search", to: "private#search"
+  get "biblio", to: "private#biblio"
   get "coord", to: "home#coord"
+
+  get "intranet", to: "private#index"
 
   namespace :admin do
     resources :users do
