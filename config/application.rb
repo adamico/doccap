@@ -2,10 +2,11 @@ require File.expand_path('../boot', __FILE__)
 
 # Pick the frameworks you want:
 # require "active_record/railtie"
+require "active_model/railtie"
 require "action_controller/railtie"
 require "action_mailer/railtie"
+require "action_view/railtie"
 require "sprockets/railtie"
-require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -32,6 +33,7 @@ module Doccap
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.i18n.default_locale = :fr
+    config.i18n.enforce_available_locales = false
 
     config.generators do |g|
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
