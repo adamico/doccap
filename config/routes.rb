@@ -22,9 +22,12 @@ Doccap::Application.routes.draw do
     resources :users do
       put 'approve', on: :member
     end
+    resources :pages, except: [:show]
   end
 
   root to: "home#index"
+  resources :pages, path: "", only: [:show]
+  get "*id" => "pages#show"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

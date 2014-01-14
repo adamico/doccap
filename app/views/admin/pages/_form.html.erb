@@ -1,0 +1,23 @@
+<%= form_for [:admin, page] do |f| %>
+  <%= render "application/form_errors", model: page %>
+
+  <div class="form-group">
+    <%= f.label :name, "Nom" %>
+    <%= f.text_field :name, autofocus: true, class: "form-control" %>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-3">
+      <%= f.label :parent_id, "Parent" %>
+      <%= f.collection_select :parent_id, Page.asc(:name), :id, :name, {include_blank: true}, class: "form-control" %>
+    </div>
+    <div class="form-group col-sm-2">
+      <%= f.label :published, "Publiée ?" %>
+      <%= f.collection_select :published, %w(oui non), :to_s, :to_s, {}, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :content, "Contenu" %>
+    <%= f.cktext_area :content %>
+  </div>
+  <%= f.submit "Enregistrer", class: "btn btn-primary" %>
+<% end %>

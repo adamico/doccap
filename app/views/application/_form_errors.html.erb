@@ -1,0 +1,14 @@
+<% if model.errors.any? %>
+  <div class="panel panel-danger" id="error_explanation">
+    <div class="panel-heading">
+      Le formulaire a <%= pluralize model.errors.count, "erreur" %>.
+    </div>
+    <div class="panel-body">
+      <ol>
+        <% model.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ol>
+    </div>
+  </div>
+<% end %>
