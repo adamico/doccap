@@ -16,6 +16,21 @@ class Admin::UsersController < ApplicationController
     authorize @user
   end
 
+  def new
+    @user = User.new
+    authorize @user
+  end
+
+  def create
+    @user = User.create(user_params)
+    authorize @user
+    if @user.save
+      redirect_to admin_users_url, notice: "L'utilisateur #{@user.email} a été créé avec succès."
+    else
+      render :new
+    end
+  end
+
   def edit
     authorize @user
   end
