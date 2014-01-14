@@ -3,9 +3,16 @@ require 'spec_helper'
 feature "Users authentication" do
   given(:user) {create(:user)}
 
-  scenario "user must login" do
+  scenario "unapproved users can't login" do
     visit root_path
     page.should have_content("entrer email et mot de passe")
+    login user
+    page.should have_content(/pas encore été approuvé/i)
+  end
+
+  scenario "approved users can login" do
+    user.approve!
+    visit root_path
     login user
     page.should have_content(/connecté/i)
   end
