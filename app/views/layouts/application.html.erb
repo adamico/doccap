@@ -7,26 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="navbar-header">
-      <% if current_user %>
-      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-doccap-collapse">
-        <%= content_tag :span, "Menu", class: "sr-only" %>
-        <% 3.times do %>
-          <%= content_tag :span, nil, class: "icon-bar" %>
-        <% end %>
-      </button>
-      <% end %>
-      <%= link_to "Doccap", root_path, class: "navbar-brand" %>
-    </div>
-    <% if current_user %>
-    <div class="collapse navbar-collapse" id="navbar-doccap-collapse">
-      <ul class="nav navbar-nav">
-        <li><%= link_to "Recherche documents", "/biblio" %></li>
-        <li><%= link_to "Coordonnées utiles", "/coord" %></li>
-      </ul>
-    <% end %>
-  </nav>
+  <%= render 'layouts/navbar' %>
 
   <div id="page_wrap">
     <% flashes = {alert: "warning", notice: "info", error: "danger"} %>
