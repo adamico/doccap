@@ -1,14 +1,14 @@
 source 'https://rubygems.org'
-ruby "2.0.0"
+ruby "2.1.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.1'
+gem 'rails', '4.1.0.beta1'
 
 gem 'mongoid', github: "mongoid/mongoid"
 gem 'bson_ext'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 4.0.0.rc1'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -34,14 +34,17 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/jonleighton/spring
+gem 'spring',        group: :development
+
 # Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+# gem 'bcrypt-ruby', '~> 3.1.2'
 
 # Use unicorn as the app server
 # gem 'unicorn'
 
 # Use Capistrano for deployment
-# gem 'capistrano', group: :development
+# gem 'capistrano-rails', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
@@ -79,13 +82,11 @@ group :test do
   gem "capybara"
   gem "database_cleaner", github: "bmabey/database_cleaner"
   gem "guard-rspec", "~> 2.1.0"
-  gem "simplecov", :require => false
+  gem "simplecov", require: false
   gem "mongoid-rspec"
 end
 
 group :development do
-  gem "spring"
-  gem "spring-commands-rspec"
   gem "pry-rails"
   gem "quiet_assets", ">= 1.0.1"
   gem 'better_errors'
