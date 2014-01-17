@@ -6,8 +6,8 @@
   <td><%= link_to communication.fichier_name, communication.fichier_url, target: "_BLANK" if communication.fichier_url %></td>
   <td>
     <div class="btn-group">
-      <%= link_to 'Edit', edit_communication_path(communication), class: "btn btn-warning btn-sm" if can?(:update, communication) %>
-      <%= link_to 'Destroy', communication, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" if can?(:destroy, communication) %>
+      <%= link_to 'Edit', edit_admin_communication_path(communication), class: "btn btn-warning btn-sm" if policy(communication).update? %>
+      <%= link_to 'Destroy', [:admin, communication], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" if policy(communication).destroy? %>
     </div>
   </td>
 </tr>

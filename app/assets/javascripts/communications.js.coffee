@@ -75,7 +75,7 @@ $.fn.attachCategorySelect2 = ->
 
 activateCategoryEdit = (category_id) ->
   $edit_btn = $("#communication_category_id_field .category_update")
-  $edit_btn.attr("href", "/categories/#{category_id}/edit")
+  $edit_btn.attr("href", "/admin/categories/#{category_id}/edit")
   if category_id then $edit_btn.show() else $edit_btn.hide()
 
 $.widget "doccap.remoteCategoryForm",
@@ -134,7 +134,7 @@ $.widget "doccap.remoteCategoryForm",
         category_label = json.label
         category_id = json.id["$oid"]
         $edit_btn = $("#communication_category_id_field .category_update")
-        $edit_btn.attr("href", "/categories/#{category_id}/edit")
+        $edit_btn.attr("href", "/admin/categories/#{category_id}/edit")
         $edit_btn.show()
         $select = @element.find("#communication_category_id")
         $select.select2("data", {id: category_id, text: category_label})

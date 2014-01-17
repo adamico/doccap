@@ -11,25 +11,25 @@ feature "Admin can manage communications" do
   end
 
   scenario "browse communications" do
-    visit communications_path
+    visit admin_communications_path
   end
 
   scenario "create communication" do
-    visit communications_path
+    pending "category select2 to be tested"
+    visit admin_communications_path
     click_on "Nouveau document"
     click_on "Enregistrer"
-    page.should have_content "erreurs"
+    page.should have_content "erreur"
     fill_in "communication_titre", with: "le titre"
     fill_in "communication_publication", with: "01/01/2013"
-    select category.name, from: "communication_category_id"
-    check "Publié?"
+    select "Oui", from: "communication_published"
     click_on "Enregistrer"
     page.should have_content "succès"
-    page.current_path.should == communications_path
+    page.current_path.should == admin_communications_path
   end
 
   scenario "add new category", js: true do
-    visit new_communication_path
+    visit new_admin_communication_path
     click_on "Nouvelle catégorie"
     within ".modal" do
       fill_in "category_name", with: "lacat"
@@ -38,8 +38,8 @@ feature "Admin can manage communications" do
     page.should have_content "lacat"
   end
 
-  scenario "edit category", js: true, focus: true do
-    visit new_communication_path
+  scenario "edit category", js: true do
+    visit new_admin_communication_path
     click_on "Nouvelle catégorie"
     within ".modal" do
       fill_in "category_name", with: "lacat"
@@ -54,14 +54,14 @@ feature "Admin can manage communications" do
   end
 
   scenario "edit communication" do
-    visit edit_communication_path(Communication.first)
+    visit edit_admin_communication_path(Communication.first)
     fill_in "communication_titre", with: ""
     click_on "Enregistrer"
-    page.should have_content "erreurs"
+    page.should have_content "erreur"
     fill_in "communication_titre", with: "le titre"
     click_on "Enregistrer"
     page.should have_content "succès"
-    page.current_path.should == communications_path
+    page.current_path.should == admin_communications_path
   end
 
   scenario "add tags" do

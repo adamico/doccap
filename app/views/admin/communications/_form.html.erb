@@ -1,0 +1,93 @@
+<%= form_for [:admin, communication], html: {class: "form-horizontal", multipart: true, role: "form"} do |f| %>
+  <%= render "application/form_errors", model: communication %>
+  <%= f.hidden_field :fichier_url %>
+  <%= f.hidden_field :fichier_name %>
+
+  <div class="form-group">
+    <%= f.label :titre, class: "col-sm-2 control-label" %>
+    <div class="col-sm-3">
+      <%= f.text_field :titre, autofocus: true, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :publication, "Publié le", class: "col-sm-2 control-label" %>
+    <div class="col-sm-3">
+      <%= f.date_field :publication, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group select required communication_category" id="communication_category_id_field">
+    <%= f.label :category_id, "Catégorie", class: "control-label col-sm-2" %>
+    <div class="col-sm-3">
+      <%= f.hidden_field :category_id, data: {placeholder: "Choisir une catégorie",
+          load: f.object.category.try(:name_and_id).to_json, source: admin_categories_url(format: :json)}  %>
+    </div>
+    <div class="col-sm-3">
+      <%= link_to content_tag(:i, nil, class: "icon-plus") + "Nouvelle catégorie", new_admin_category_path, data: {target: "#category_modal", toggle: "modal"}, title: "Nouvelle catégorie", class: "btn btn-default category_create" %>
+      <%= link_to content_tag(:i, nil, class: "icon-pencil") + "Voir/modifier",
+        edit_admin_category_path(id: "__ID__"), data: {target: "#category_modal", toggle: "modal"},
+        title: "Modifier catégorie", class: "btn btn-default category_update" %>
+    </div>
+  </div>
+
+  <div class="form-group communication_tags">
+    <%= f.label :tags, "Mots clés", class: "control-label col-sm-2" %>
+    <div class="col-sm-6">
+      <%= f.hidden_field :tags,
+        value: f.object.tags,
+        data: {
+          load: f.object.tags_array.map {|tag| {id: tag, text: tag}}.to_json,
+          placeholder: "mots séparés par virgule",
+          url: communication_tags_path(format: :json)
+      } %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :publication, "Publié ?", class: "col-sm-2 control-label" %>
+    <div class="col-sm-3">
+      <%= f.collection_select :published, [["Oui", "oui"], ["Non", "non"]], :last, :first, {}, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit "Enregistrer", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
+
+<div class="communication_fichier" style="display: none;">
+  <div class="col-sm-2">Fichier actuel</div>
+  <div class="col-sm-10">
+    <p>
+      <%= link_to "DUMMY", "#", id: "communication_fichier_link", data: {fichier_name: communication.fichier_name, fichier_url: communication.fichier_url} %>
+      <%= link_to "Effacer ce fichier", "#", data: {confirm: 'Etes-vous sûr ?', url: destroy_fichier_path}, remote: true,
+        class: "btn btn-danger btn-sm", id: "communication_fichier_delete" %>
+    </p>
+  </div>
+</div>
+
+<%= s3_uploader_form id: "s3-uploader", class: "form-horizontal" do %>
+  <div class="form-group">
+    <%= label_tag :file, "Joindre un#{communication.fichier_url.present? ? ' (nouveau) ' : ' '}fichier", class: "col-sm-2 control-label s3-uploader-file" %>
+    <div class="col-sm-6">
+      <%= file_field_tag :file, class: "form-control" %>
+    </div>
+  </div>
+<% end %>
+
+<script id="template-upload" type="text/x-tmpl">
+<div id="file-{%=o.unique_id%}" class="upload">
+  {%=o.name%}
+  <div class="progress"><div class="bar" style="width: 0%"></div></div>
+</div>
+</script>
+
+<div class="clearfix">&nbsp;</div>
+
+<div class="btn-group">
+  <%= link_to 'Retour au document', communication,
+    class: "btn btn-warning" unless communication.new_record? %>
+</div>

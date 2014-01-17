@@ -28,14 +28,14 @@
                 <li><%= link_to "Tableau de bord", "#" %></li>
                 <li class="divider"></li>
                 <li><%= link_to "Utilisateurs", admin_users_path %></li>
-                <li><%= link_to "Communications", communications_path %></li>
+                <li><%= link_to "Communications", admin_communications_path %></li>
               </ul>
             </li>
           <% end %>
           <li><%= link_to "Déconnexion", logout_path %></li>
 
         <% else %>
-          <li><%= link_to "Connexion", login_path %></li>
+          <li><%= link_to "Se connecter", login_path %></li>
         <% end -%>
       </ul>
     </div>

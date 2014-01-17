@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  before_action :authenticate_user!
 
   def destroy_fichier(url)
     if url.present?

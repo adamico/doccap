@@ -17,4 +17,4 @@
   </tbody>
 </table>
 
-<%= link_to "Nouveau document", new_communication_path, class: "btn btn-primary" %>
+<%= link_to "Nouveau document", new_admin_communication_path, class: "btn btn-primary" if policy(Communication.new).create? %>

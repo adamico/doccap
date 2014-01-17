@@ -1,4 +1,4 @@
-class CategoriesController < ApplicationController
+class Admin::CategoriesController < ApplicationController
   def index
     @categories = Category.where(name: /.*#{params[:q]}.*/i).asc(:name)
     respond_to do |format|
