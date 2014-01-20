@@ -13,7 +13,7 @@ Doccap::Application.routes.draw do
 
   get "search", to: "private#search"
   get "biblio", to: "private#biblio"
-  get "coord", to: "home#coord"
+  get "coord", to: "coordonnees#index"
 
   get "intranet", to: "private#index"
 
