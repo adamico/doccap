@@ -1,5 +1,7 @@
 <h1>Liste documents</h1>
 
+<%= link_to "Nouveau document", new_admin_communication_path, class: "btn btn-primary" if policy(Communication.new).create? %>
+
 <table class="table table-condensed table-striped">
   <thead>
     <tr>
