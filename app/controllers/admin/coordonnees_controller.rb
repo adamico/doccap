@@ -6,34 +6,38 @@ class Admin::CoordonneesController < ApplicationController
 
   def index
     @coordonnees = policy_scope(Coordonnee).includes(:coord_category).asc(:libelle)
+    respond_with @coordonnees
   end
 
   def show
     @coordonnee = Coordonnee.find(params[:id])
     authorize @coordonnee
+    respond_with @coordonnee
   end
 
   def new
     @coordonnee = Coordonnee.new
     authorize @coordonnee
+    respond_with @coordonnee
   end
 
   def create
     @coordonnee = Coordonnee.create(coordonnee_params)
     authorize @coordonnee
-    respond_with @coordonnee, location: [:admin, @coordonnee]
+    respond_with @coordonnee, location: admin_coordonnees_url
   end
 
   def edit
     @coordonnee = Coordonnee.find(params[:id])
     authorize @coordonnee
+    respond_with @coordonnee
   end
 
   def update
     @coordonnee = Coordonnee.find(params[:id])
     @coordonnee.update(coordonnee_params)
     authorize @coordonnee
-    respond_with @coordonnee, location: [:admin, @coordonnee]
+    respond_with @coordonnee, location: admin_coordonnees_url
   end
 
   def destroy
