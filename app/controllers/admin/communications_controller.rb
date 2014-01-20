@@ -1,12 +1,13 @@
 class Admin::CommunicationsController < ApplicationController
   after_action :verify_authorized, except: :index
+  after_action :verify_policy_scoped, only: :index
 
   def tags
     @tags = Communication.tags.select {|tag| tag =~ /#{params[:q]}/i}
   end
 
   def index
-    @communications = Communication.includes(:category).desc(:publication)
+    @communications = policy_scope(Communication).includes(:category).desc(:publication)
   end
 
   def show

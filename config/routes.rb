@@ -6,7 +6,6 @@ Doccap::Application.routes.draw do
     get "logout", to:  "devise/sessions#destroy", as: "logout"
   end
 
-  resources :communications, only: :show
   resources :coordonnees
 
   get "tags", to: "communications#tags", as: "communication_tags"
@@ -23,9 +22,9 @@ Doccap::Application.routes.draw do
     resources :users do
       put 'approve', on: :member
     end
-    resources :communications, except: [:show]
-    resources :pages, except: [:show]
+    resources :communications
     resources :categories
+    resources :pages, except: [:show]
   end
 
   root to: "home#index"

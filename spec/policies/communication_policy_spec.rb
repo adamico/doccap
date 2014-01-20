@@ -3,6 +3,7 @@ require "spec_helper"
 describe CommunicationPolicy do
   subject { CommunicationPolicy }
   let(:communication) { create :communication }
+  let(:unpublished_communication) { create :unpublished_communication}
   let(:admin) { build_stubbed :admin }
   let(:user) { build_stubbed :approved_user }
 
@@ -13,7 +14,8 @@ describe CommunicationPolicy do
 
   permissions :show? do
     it { should     permit(admin, communication) }
-    it { should_not permit(user, communication) }
+    it { should     permit(user, communication) }
+    it { should_not permit(user, unpublished_communication) }
   end
 
   permissions :create? do
