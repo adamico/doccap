@@ -6,10 +6,9 @@ Doccap::Application.routes.draw do
     get "logout", to:  "devise/sessions#destroy", as: "logout"
   end
 
-  resources :coordonnees
+  resources :coordonnees, only: [:show, :index]
 
   get "tags", to: "communications#tags", as: "communication_tags"
-
   get "destroy_fichier", to: "s3_direct_upload#destroy", as: "destroy_fichier"
 
   get "search", to: "private#search"
@@ -23,6 +22,7 @@ Doccap::Application.routes.draw do
       put 'approve', on: :member
     end
     resources :communications
+    resources :coordonnees
     resources :categories
     resources :pages, except: [:show]
   end

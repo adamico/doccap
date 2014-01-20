@@ -5,15 +5,13 @@
     <tr>
       <th>Libellé</th>
       <th>Catégorie</th>
+      <th>&nbsp;</th>
     </tr>
   </thead>
 
   <tbody>
-    <% for coordonnee in @coordonnees do %>
-    <tr>
-      <td><%= link_to coordonnee.libelle, coordonnee %></td>
-      <td><%= coordonnee.coord_category %></td>
-    </tr>
-    <% end %>
+    <%= render @coordonnees %>
   </tbody>
 </table>
+
+<%= link_to "Nouvelle coordonnée", new_admin_coordonnee_path, class: "btn btn-primary" %>
