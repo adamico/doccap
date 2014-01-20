@@ -1,11 +1,4 @@
-class ApplicationPolicy
-  attr_reader :user, :record
-  def initialize(user, record)
-    raise Pundit::NotAuthorizedError, "vous devez vous connecter" unless user
-    @user = user
-    @record = record
-  end
-
+ApplicationPolicy = Struct.new(:user, :record) do
   def index?   ; false                                 ; end
   def show?    ; scope.where(:id => record.id).exists? ; end
   def create?  ; false                                 ; end

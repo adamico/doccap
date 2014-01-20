@@ -1,33 +1,13 @@
 class PagesController < ApplicationController
-  before_action :set_page, only: :show
-  load_and_authorize_resource
-  rescue_from Mongoid::Errors::DocumentNotFound, with: :page_not_found
+  skip_before_action :authenticate_user!
 
   def show
+    path = request.fullpath.split("/").reject {|item| item.blank? || ["admin", "pages"].include?(item)}
+    scope = current_user && current_user.admin? ? Page : Page.published
+    @page = scope.where(slug: path.last).first if path.all? {|page| Page.where(slug: page).first}
+    render :not_found unless @page
   end
 
-  def current_page
-    if self.class == PagesController
-      path = request.fullpath.split("/").reject {|item| item.blank? || ["admin", "pages"].include?(item)}
-      if path.all? {|page| Page.where(slug: page).first}
-        if current_user && current_ability.can?(:access, :pages)
-          @page = Page.where(slug: path.last).first
-        else
-          @page = Page.published.where(slug: path.last).first
-        end
-      end
-    else
-      nil
-    end
-  end
-
-  private
-
-  def set_page
-    current_page
-  end
-
-  def page_not_found
-    render template: "shared/not_found", status: 404
+  def not_found
   end
 end

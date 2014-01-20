@@ -29,6 +29,7 @@ Doccap::Application.routes.draw do
 
   root to: "home#index"
   resources :pages, path: "", only: [:show]
+  get "page_not_found", to: "pages#not_found"
   get "*id" => "pages#show"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

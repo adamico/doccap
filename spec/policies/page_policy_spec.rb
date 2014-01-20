@@ -16,7 +16,7 @@ describe PagePolicy do
   permissions :show? do
     it { should     permit(admin, page) }
     it { should     permit(admin, draft) }
-    it { should     permit(User.new, page) }
+    it { should     permit(nil, page) }
     it { should_not permit(User.new, draft) }
   end
 

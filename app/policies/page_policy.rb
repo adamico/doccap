@@ -7,7 +7,7 @@ class PagePolicy < ApplicationPolicy
 
   self::Scope = Struct.new(:user, :scope) do
     def resolve
-      if user.admin?
+      if user && user.admin?
         scope
       else
         scope.published
