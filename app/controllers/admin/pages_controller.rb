@@ -1,45 +1,44 @@
 class Admin::PagesController < ApplicationController
+  respond_to :html, :json
+  responders :flash, :http_cache
   before_action :set_page, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
-  rescue_from Mongoid::Errors::DocumentNotFound, with: :page_not_found
+  after_action :verify_authorized, except: :index
 
   def index
+    @pages = Page.all
+    respond_with @pages
   end
 
   def new
+    @page = Page.new
+    authorize @page
+    respond_with @page
   end
 
   def edit
+    authorize @page
+    respond_with @page
   end
 
   def create
-    @page = Page.new(page_params)
-
-    if @page.save
-      redirect_to admin_pages_url, notice: "Page '#{@page.name}' créée avec succès."
-    else
-      render action: 'new'
-    end
+    @page = Page.create(page_params)
+    authorize @page
+    respond_with @page, location: admin_pages_url
   end
 
   def update
-    if @page.update(page_params)
-      redirect_to admin_pages_url, notice: "Page '#{@page.name}' mise à jour avec succès."
-    else
-      render action: 'edit'
-    end
+    @page.update(page_params)
+    authorize @page
+    respond_with @page, location: admin_pages_url
   end
 
   def destroy
+    authorize @page
     @page.destroy
-    redirect_to admin_pages_url, notice: "Page '#{@page.name}' détruite avec succès."
+    respond_with @page, location: admin_pages_url
   end
 
   private
-
-  def page_not_found
-    render template: "shared/not_found", status: 404
-  end
 
   def set_page
     @page = Page.find_by(slug: params[:id])

@@ -9,7 +9,7 @@ class Page
   field :content, type: String
   field :published, default: "non"
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
 
   def self.published
     where(published: "oui")

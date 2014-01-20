@@ -26,25 +26,25 @@ feature "Pages admin" do
     fill_in "page_name", with: "Le titre"
     fill_in "page_content", with: "<p>Paragraphe de test</p>"
     click_button "Enregistrer"
-    page.should have_content("Page 'Le titre' créée avec succès.")
+    page.should have_content("succès")
   end
 
   scenario "updates a page" do
-    pending "No route matches [PATCH] '/admin/pages'"
     existing_page = create(:page)
+    create(:page, name: "taken")
     visit edit_admin_page_path(existing_page)
-    fill_in "page_name", with: ""
+    fill_in "page_name", with: "taken"
     click_button "Enregistrer"
     page.should have_content(/erreur/)
     fill_in "page_name", with: "Un autre titre"
     click_button "Enregistrer"
-    page.should have_content("Page 'Un autre titre' mise à jour avec succès.")
+    page.should have_content("succès")
   end
 
   scenario "destroys a page" do
     existing_page = create(:page, name: "bidule")
     visit page_path(existing_page)
     click_link "Détruire"
-    page.should have_content("Page 'bidule' détruite avec succès.")
+    page.should have_content("succès")
   end
 end
