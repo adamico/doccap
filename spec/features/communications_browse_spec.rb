@@ -1,6 +1,6 @@
-require "spec_helper"
+require 'spec_helper'
 
-feature "User browsing communications" do
+feature 'User browsing communications' do
   let!(:user) {build_stubbed :approved_user}
 
   background do
@@ -10,17 +10,17 @@ feature "User browsing communications" do
     visit admin_communications_path
   end
 
-  scenario "cannot see unpublished communications" do
-    page.should_not have_content("unpublished")
+  scenario 'cannot see unpublished communications' do
+    page.should_not have_content('unpublished')
   end
 
-  scenario "cannot see admin actions" do
-    page.should_not have_content("Modifier")
-    page.should_not have_content("Détruire")
-    page.should_not have_content("Nouveau")
+  scenario 'cannot see admin actions' do
+    page.should_not have_content('Modifier')
+    page.should_not have_content('Détruire')
+    page.should_not have_content('Nouveau')
   end
 
-  scenario "can see communication details" do
+  scenario 'can see communication details' do
     visit admin_communication_path(Communication.published.first)
   end
 end
