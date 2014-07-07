@@ -10,13 +10,7 @@
   <%= render 'layouts/navbar' %>
 
   <div id="page_wrap">
-    <% flashes = {alert: "warning", notice: "info", error: "danger"} %>
-    <% flash && flash.each do |name, msg| %>
-      <div class="flash alert fade in <%= "alert-#{flashes[name]}" %>">
-        <a href="#" class="close", data-dismiss="alert"}>&times;</a>
-        <strong><%= msg %></strong>
-      </div>
-    <% end %>
+    <%= render 'messages' %>
     <div class="container">
       <%= yield %>
     </div>

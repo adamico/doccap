@@ -1,0 +1,11 @@
+<% flash.each do |name, msg| %>
+  <%= content_tag :div,
+    class: "alert fade in
+           alert-#{name == 'notice' ? 'success' : 'danger'}" do %>
+    <%= button_tag '&times;'.html_safe, class: 'close',
+                   :"aria-hidden" => true, :"data-dismiss" => 'alert',
+                   type: 'button' %>
+
+    <%= content_tag :div, msg, id: "flash_#{name}" %>
+  <% end %>
+<% end %>
