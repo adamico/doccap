@@ -4,7 +4,7 @@ feature "Users authentication" do
   given(:user) {create(:user)}
 
   scenario "unapproved users can't login" do
-    visit root_path
+    visit login_path
     page.should have_content("entrer email et mot de passe")
     login user
     page.should have_content(/pas encore été approuvé/i)
