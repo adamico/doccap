@@ -8,7 +8,7 @@ gem 'mongoid', github: "mongoid/mongoid"
 gem 'bson_ext'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0.rc1'
+gem 'sass-rails', '~> 4.0.3'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -66,7 +66,7 @@ gem "s3_direct_upload"
 gem "fog"
 gem 'unf'
 gem 'responders'
-gem 'ckeditor', github: "galetahub/ckeditor"
+gem 'ckeditor', '~> 4.0.11'
 gem "mongoid-tree", github: "benedikt/mongoid-tree", branch: "mongoid-4.0"
 gem "pundit", github: "elabs/pundit"
 
