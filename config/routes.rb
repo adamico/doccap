@@ -8,7 +8,6 @@ Doccap::Application.routes.draw do
 
   resources :coordonnees, only: [:show, :index]
 
-  get "tags", to: "communications#tags", as: "communication_tags"
   get "destroy_fichier", to: "s3_direct_upload#destroy", as: "destroy_fichier"
 
   get "search", to: "private#search"
@@ -21,6 +20,7 @@ Doccap::Application.routes.draw do
     resources :users do
       put 'approve', on: :member
     end
+    get 'tags', to: 'communications#tags', as: 'communication_tags'
     resources :communications
     resources :coordonnees
     resources :categories

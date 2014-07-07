@@ -39,7 +39,7 @@
         data: {
           load: f.object.tags_array.map {|tag| {id: tag, text: tag}}.to_json,
           placeholder: "mots séparés par virgule",
-          url: communication_tags_path(format: :json)
+          url: admin_communication_tags_path(format: :json)
       } %>
     </div>
   </div>
