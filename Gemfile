@@ -56,7 +56,8 @@ gem 'unicorn'
 gem "unicorn-rails"
 gem 'foreman'
 
-gem 'bootstrap-sass', '~> 3.0.1.0.rc'
+gem 'bootstrap-sass', '~> 3.2.0.0'
+gem 'autoprefixer-rails'
 gem "devise", github: "plataformatec/devise"
 gem 'mongoid_taggable'
 gem 'select2-rails', github: "argerim/select2-rails"

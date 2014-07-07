@@ -14,12 +14,10 @@
 //= require jquery_ujs
 //= require jquery.turbolinks
 //= require turbolinks
-//= require bootstrap
+//= require bootstrap-sprockets
 //= require ckeditor/override
 //= require ckeditor/init
 //= require select2
 //= require common
 //= require s3_direct_upload
 //= require communications
-//= require home
-//= require_tree .
