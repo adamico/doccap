@@ -11,7 +11,7 @@ feature "Users authentication" do
   end
 
   scenario "approved users can login" do
-    user.approve!
+    user.approved!
     visit root_path
     login user
     page.should have_content(/connecté/i)

@@ -1,20 +1,14 @@
 class User < ActiveRecord::Base
+  rolify
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  ## Database authenticatable
-  #field :email,              :type => String, :default => ""
-  #field :encrypted_password, :type => String, :default => ""
+  enum state: [:unapproved, :approved]
 
-  ## Recoverable
-  #field :reset_password_token,   :type => String
-  #field :reset_password_sent_at, :type => Time
-
-  ## Rememberable
-  #field :remember_created_at, :type => Time
-
-  #field :admin,    type: Boolean, default: false
-  #field :approved, type: Boolean, default: false
+  def admin?
+    has_role?(:admin)
+  end
 
   def active_for_authentication?
     super && approved?
