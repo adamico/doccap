@@ -1,9 +1,9 @@
 class PagePolicy < ApplicationPolicy
-  def index?   ; user.admin?                                 ; end
-  def show?    ; scope.where(id: record.id).exists?          ; end
-  def create?  ; user.admin?                                 ; end
-  def update?  ; user.admin?                                 ; end
-  def destroy? ; user.admin?                                 ; end
+  def index?   ; user.admin?                        ; end
+  def show?    ; scope.where(id: record.id).exists? ; end
+  def create?  ; user && user.admin?                ; end
+  def update?  ; user && user.admin?                ; end
+  def destroy? ; user && user.admin?                ; end
 
   self::Scope = Struct.new(:user, :scope) do
     def resolve

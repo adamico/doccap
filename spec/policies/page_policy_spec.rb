@@ -5,8 +5,8 @@ describe PagePolicy do
 
   let(:page)  { create :published }
   let(:draft) { create :draft }
-  let(:admin) { build_stubbed :admin }
-  let(:user)  { build_stubbed :approved_user }
+  let(:admin) { create :admin }
+  let(:user)  { create :approved_user }
 
   permissions :index? do
     it { should     permit(admin) }
