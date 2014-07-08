@@ -1,9 +1,9 @@
-<% if params[:approved]
+<% if params[:unapproved]
   page_title = "non approuvés"
   filter_link = content_tag :p, link_to("Lister tous les utilisateurs", admin_users_path, class: "btn")
 else
   page_title = ""
-  filter_link = content_tag :p, link_to("Lister les utilisateurs non approuvés", admin_users_path(approved: false), class: "btn") if User.where(approved: false).any?
+  filter_link = content_tag :p, link_to("Lister les utilisateurs non approuvés", admin_users_path(unapproved: true), class: "btn") if User.unapproved.any?
 end %>
 
 <h1><%= "Liste utilisateurs #{page_title}" %></h1>
@@ -23,10 +23,10 @@ end %>
     <% @users.each do |user| %>
       <%= content_tag_for :tr, user do %>
         <td><%= user.email %></td>
-        <td><%= t "default.#{user.approved}" %></td>
+        <td><%= t "activerecord.models.user.states.#{user.state}" %></td>
         <td>
           <div class="btn-group">
-            <%= link_to "Approuver", approve_admin_user_path(user), method: :put, class: "btn btn-info" if policy(user).create? and !user.approved? %>
+            <%= link_to "Approuver", approve_admin_user_path(user), method: :put, class: "btn btn-info" if policy(user).create? and user.unapproved? %>
             <%= link_to "Modifier", edit_admin_user_path(user), class: "btn btn-warning" if policy(user).update? %>
             <%= link_to "Détruire", [:admin, user], method: :delete, data: {confirm: 'Etes-vous sûr ?'}, class: "btn btn-danger" if policy(user).destroy? %>
           </div>

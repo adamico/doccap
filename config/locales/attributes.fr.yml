@@ -1,0 +1,8 @@
+fr:
+  activerecord:
+    models:
+      user:
+        states:
+          unapproved: Non approuvé
+          approved: Approuvé
+

@@ -3,12 +3,12 @@ class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:approve, :show, :edit, :update, :destroy]
 
   def index
-    @users = params[:approved] ? User.where(approved: false) : User.all
+    @users = params[:unapproved] ? User.unapproved : User.all
   end
 
   def approve
     authorize @user, :create?
-    @user.approve!
+    @user.approved!
     redirect_to admin_users_url, notice: "Utilisateur '#{@user.email}' approuvé avec succès."
   end
 
