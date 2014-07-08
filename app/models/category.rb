@@ -1,7 +1,4 @@
-class Category
-  include Mongoid::Document
-  field :name, type: String
-
+class Category < ActiveRecord::Base
   has_many :communications
 
   validates :name, presence: true
