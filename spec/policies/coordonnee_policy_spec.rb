@@ -3,8 +3,8 @@ require "spec_helper"
 describe CoordonneePolicy do
   subject { CoordonneePolicy }
   let(:coordonnee) { create :coordonnee }
-  let(:admin) { build_stubbed :admin }
-  let(:user) { build_stubbed :approved_user }
+  let(:admin)      { create :admin }
+  let(:user)       { create :approved_user }
 
   permissions :index? do
     it { should permit(admin) }

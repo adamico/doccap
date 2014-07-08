@@ -4,8 +4,8 @@ describe CommunicationPolicy do
   subject { CommunicationPolicy }
   let(:communication) { create :communication }
   let(:unpublished_communication) { create :unpublished_communication}
-  let(:admin) { build_stubbed :admin }
-  let(:user) { build_stubbed :approved_user }
+  let(:admin) { create :admin }
+  let(:user) { create :approved_user }
 
   permissions :index? do
     it { should permit(admin) }

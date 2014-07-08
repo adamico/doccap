@@ -2,9 +2,9 @@ require "spec_helper"
 
 describe UserPolicy do
   subject { UserPolicy }
-  let(:user) { build_stubbed :approved_user }
-  let(:other_user) { build_stubbed :approved_user }
-  let(:admin) { build_stubbed :admin }
+  let(:user)       { create :approved_user }
+  let(:other_user) { create :approved_user }
+  let(:admin)      { create :admin }
 
   permissions :show? do
     it { should permit(user, user) }
