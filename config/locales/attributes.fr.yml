@@ -9,3 +9,7 @@ fr:
         states:
           draft: Brouillon
           published: Publié
+      page:
+        states:
+          draft: Brouillon
+          published: Publié

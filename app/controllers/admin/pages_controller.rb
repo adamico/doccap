@@ -2,7 +2,10 @@ class Admin::PagesController < ApplicationController
   respond_to :html, :json
   responders :flash, :http_cache
   before_action :set_page, only: [:show, :edit, :update, :destroy]
+  before_action :load_parents, only: [:new, :create, :edit, :update]
   after_action :verify_authorized, except: :index
+
+
 
   def index
     @pages = Page.all
@@ -46,6 +49,14 @@ class Admin::PagesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def page_params
-    params.require(:page).permit(:name, :content, :parent_id, :published)
+    params.require(:page).permit(:name, :content, :parent_id, :state)
+  end
+
+  def load_parents
+    @parents ||= if params[:id]
+                   Page.order(:name).where.not(id: @page.id)
+                 else
+                   Page.order(:name)
+                 end
   end
 end
