@@ -6,8 +6,8 @@ feature "Search" do
   background do
     login user
     colloque = create(:category, name: "colloque")
-    create(:communication, titre: "les cyanures", category: colloque, published: "oui")
-    create(:communication, titre: "les machins", category: colloque, published: "oui", tags: "cyanures")
+    create(:communication, title: "les cyanures", category: colloque, state: 'published')
+    create(:communication, title: "les machins", category: colloque, state: 'published', tag_list: "cyanures")
   end
 
   scenario "returns results in vigitox articles" do
