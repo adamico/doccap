@@ -70,6 +70,7 @@ gem 'ckeditor', '~> 4.0.11'
 gem 'ancestry', '~> 2.1.0'
 gem "pundit", github: "elabs/pundit"
 gem 'rolify', '~> 3.4.0'
+gem 'friendly_id', '~> 5.0.0'
 
 group :test, :development do
   gem "rspec-rails"
