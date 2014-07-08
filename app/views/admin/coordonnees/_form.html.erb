@@ -1,5 +1,5 @@
-<%= form_for [:admin, @coordonnee], html: {class: "form-horizontal", role: "form"} do |f| %>
-  <%= render "application/form_errors", model: @coordonnee %>
+<%= form_for [:admin, coordonnee], html: {class: "form-horizontal", role: "form"} do |f| %>
+  <%= render "application/form_errors", model: coordonnee %>
 
   <div class="form-group">
     <%= f.label :libelle, class: "col-sm-2 control-label" %>
@@ -18,7 +18,7 @@
   <div class="form-group">
     <%= f.label :coord_category_id, "Type", class: "col-sm-2 control-label" %>
     <div class="col-sm-3">
-      <%= f.collection_select :coord_category_id, CoordCategory.asc(:name).all, :id, :name, {}, class: "form-control" %>
+      <%= f.collection_select :coord_category_id, coord_categories, :id, :name, {}, class: "form-control" %>
     </div>
   </div>
 

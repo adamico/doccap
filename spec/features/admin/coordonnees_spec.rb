@@ -2,15 +2,16 @@ require "spec_helper"
 
 feature "Coordonnées management" do
 
-  let!(:admin)      {create(:admin)}
-  let!(:coordonnee) {create(:coordonnee)}
-  let(:range)       {(1001..1010)}
+  let!(:admin)      { create(:admin) }
+  let!(:coordonnee) { create(:coordonnee)}
+  let(:range)       { (1001..1010) }
 
   background do
     login admin
     range.each do |i|
       create(:coordonnee, libelle: "coordonnee#{i}")
     end
+    create_list(:coord_category, 10)
   end
 
   scenario "creation" do

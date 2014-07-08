@@ -4,8 +4,10 @@ class Admin::CoordonneesController < ApplicationController
   after_action :verify_authorized, except: :index
   after_action :verify_policy_scoped, only: :index
 
+  before_action :set_coord_categories, only: [:new, :create, :edit, :update]
+
   def index
-    @coordonnees = policy_scope(Coordonnee).includes(:coord_category).asc(:libelle)
+    @coordonnees = policy_scope(Coordonnee).includes(:coord_category).order(:libelle)
     respond_with @coordonnees
   end
 
@@ -50,5 +52,9 @@ class Admin::CoordonneesController < ApplicationController
 
   def coordonnee_params
     params.require(:coordonnee).permit(:libelle, :content, :coord_category_id)
+  end
+
+  def set_coord_categories
+    @coord_categories ||= CoordCategory.all
   end
 end
