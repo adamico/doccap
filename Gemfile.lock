@@ -29,13 +29,6 @@ GIT
       websocket-driver (>= 0.2.0)
 
 GIT
-  remote: git://github.com/ncri/cancan.git
-  revision: aa370c3ea1907df534708105b20f243c388377d5
-  branch: 2.0
-  specs:
-    cancan (2.0.0.alpha)
-
-GIT
   remote: git://github.com/plataformatec/devise.git
   revision: d5e0171cb40735de8bfc28daa5b6524f7e121732
   specs:
@@ -328,7 +321,6 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-sass (~> 3.2.0.0)
   byebug
-  cancan!
   capybara
   ckeditor (~> 4.0.11)
   coffee-rails (~> 4.0.0)

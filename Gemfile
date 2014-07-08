@@ -60,7 +60,6 @@ gem 'autoprefixer-rails'
 gem "devise", github: "plataformatec/devise"
 gem 'acts-as-taggable-on', '~> 3.2.6'
 gem 'select2-rails', github: "argerim/select2-rails"
-gem "cancan", github: "ncri/cancan", branch: "2.0"
 gem "httparty"
 gem "s3_direct_upload"
 gem "fog"
