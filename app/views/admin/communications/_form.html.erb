@@ -11,7 +11,7 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :publication, "Etat", class: "col-sm-2 control-label" %>
+    <%= f.label :publication, "Publié le", class: "col-sm-2 control-label" %>
     <div class="col-sm-3">
       <%= f.date_field :publication, class: "form-control" %>
     </div>
@@ -45,7 +45,7 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :state, "Publié ?", class: "col-sm-2 control-label" %>
+    <%= f.label :state, "Etat", class: "col-sm-2 control-label" %>
     <div class="col-sm-3">
       <%= f.collection_select :state, Communication.human_states,
                               :last, :first,  {}, class: "form-control" %>
