@@ -2,7 +2,7 @@ class CoordCategory < ActiveRecord::Base
   extend FriendlyId
 
   friendly_id :name, use: :slugged
-  #has_ancestry
+  has_ancestry
 
   default_scope { order(:name) }
 
