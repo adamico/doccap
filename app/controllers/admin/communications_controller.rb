@@ -7,7 +7,7 @@ class Admin::CommunicationsController < ApplicationController
   end
 
   def index
-    @communications = policy_scope(Communication).includes(:category).desc(:publication)
+    @communications = policy_scope(Communication).order(:publication)
   end
 
   def show
@@ -51,8 +51,9 @@ class Admin::CommunicationsController < ApplicationController
 
   private
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def communication_params
-    params.require(:communication).permit(:titre, :publication, :fichier_name, :fichier_url, :tags, :category_id, :published)
+    params.require(:communication).permit(:title, :publication, :fichier_name,
+                                          :fichier_url, :tags, :category_id,
+                                          :state)
   end
 end

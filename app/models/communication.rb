@@ -1,43 +1,23 @@
 class Communication < ActiveRecord::Base
-  #include Mongoid::Taggable
-
-  #field :t, as: :titre, type: String
-  #field :st, as: :slugged_titre, type: String
-  #field :p, as: :publication, type: Date
-  #field :pd, as: :published, type: String
-  #field :fu, as: :fichier_url, type: String
-  #field :fn, as: :fichier_name, type: String
+  acts_as_taggable
 
   belongs_to :category
 
-  validates :titre, presence: true, uniqueness: true
+  validates :title, presence: true, uniqueness: true
   validates :publication, presence: true
   validates :category_id, presence: true
-  before_validation :generate_slugged_fields
 
-  def is_published?
-    published == "oui"
-  end
+  enum state: [:draft, :published]
 
-  def self.published
-    where(published: "oui")
-  end
+  #def self.search_by_titre_or_tag(query)
+    #(self.by_titre(query) + self.by_tag(query)).uniq
+  #end
 
-  def self.search_by_titre_or_tag(query)
-    (self.by_titre(query) + self.by_tag(query)).uniq
-  end
+  #def self.by_titre(query)
+    #published.where(slugged_titre: /.*#{query}.*/i)
+  #end
 
-  def self.by_titre(query)
-    published.where(slugged_titre: /.*#{query}.*/i)
-  end
-
-  def self.by_tag(query)
-    published.tagged_with_any(/.*#{query}.*/i)
-  end
-
-  private
-
-  def generate_slugged_fields
-    self.slugged_titre ||= titre.parameterize
-  end
+  #def self.by_tag(query)
+    #published.tagged_with_any(/.*#{query}.*/i)
+  #end
 end

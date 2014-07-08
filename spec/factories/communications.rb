@@ -2,12 +2,12 @@
 
 FactoryGirl.define do
   factory :unpublished_communication, class: "Communication" do
-    sequence(:titre) {|n| "unpublished comm#{n}"}
+    sequence(:title) {|n| "unpublished comm#{n}"}
     publication Date.today
     category
     factory :communication do
-      sequence(:titre) {|n| "comm#{n}"}
-      published "oui"
+      sequence(:title) {|n| "comm#{n}"}
+      state 'published'
     end
   end
 end
