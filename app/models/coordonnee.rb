@@ -1,7 +1,4 @@
-class Coordonnee
-  include Mongoid::Document
-  field :libelle, type: String
-  field :content, type: String
+class Coordonnee < ActiveRecord::Base
   belongs_to :coord_category
 
   validates :libelle, presence: true

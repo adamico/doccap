@@ -1,10 +1,6 @@
-class CoordCategory
-  include Mongoid::Document
-  include Mongoid::Tree
-  include Slug
-
-  field :name
-  field :slug
+class CoordCategory < ActiveRecord::Base
+  #include Mongoid::Tree
+  #include Slug
 
   def to_s
     name
