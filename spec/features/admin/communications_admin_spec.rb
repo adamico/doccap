@@ -20,7 +20,7 @@ feature "Admin can manage communications" do
     click_on "Nouveau document"
     click_on "Enregistrer"
     page.should have_content "erreur"
-    fill_in "communication_titre", with: "le titre"
+    fill_in "communication_title", with: "le titre"
     fill_in "communication_publication", with: "01/01/2013"
     select "Oui", from: "communication_published"
     click_on "Enregistrer"
@@ -55,10 +55,10 @@ feature "Admin can manage communications" do
 
   scenario "edit communication" do
     visit edit_admin_communication_path(Communication.first)
-    fill_in "communication_titre", with: ""
+    fill_in "communication_title", with: ""
     click_on "Enregistrer"
     page.should have_content "erreur"
-    fill_in "communication_titre", with: "le titre"
+    fill_in "communication_title", with: "le titre"
     click_on "Enregistrer"
     page.should have_content "succès"
     page.current_path.should == admin_communications_path

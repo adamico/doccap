@@ -1,6 +1,7 @@
 class Admin::CategoriesController < ApplicationController
   def index
-    @categories = Category.where(name: /.*#{params[:q]}.*/i).asc(:name)
+    @categories = Category.where('name like ?', "%#{params[:q]}%")
+                          .order('name asc')
     respond_to do |format|
       format.json { render json: @categories.map(&:name_and_id) }
     end

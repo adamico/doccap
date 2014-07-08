@@ -67,7 +67,7 @@ $.fn.attachCategorySelect2 = ->
         return {results: data}
   @on "change", (e) =>
     if e.added
-      category_id = e.added.id["$oid"]
+      category_id = e.added.id
       console.log "Category changed : #{category_id}"
       activateCategoryEdit(category_id)
     else
@@ -132,7 +132,7 @@ $.widget "doccap.remoteCategoryForm",
       else
         json = $.parseJSON xhr.responseText
         category_label = json.label
-        category_id = json.id["$oid"]
+        category_id = json.id
         $edit_btn = $("#communication_category_id_field .category_update")
         $edit_btn.attr("href", "/admin/categories/#{category_id}/edit")
         $edit_btn.show()

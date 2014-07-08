@@ -9,6 +9,13 @@ class Communication < ActiveRecord::Base
 
   enum state: [:draft, :published]
 
+  def self.human_states
+    [].tap do |result|
+      states.each do |key, value|
+        result << [I18n.t("activerecord.attributes.#{model_name.i18n_key}.states.#{key}"), key]
+      end
+    end
+  end
   #def self.search_by_titre_or_tag(query)
     #(self.by_titre(query) + self.by_tag(query)).uniq
   #end

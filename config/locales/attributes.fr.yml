@@ -1,8 +1,11 @@
 fr:
   activerecord:
-    models:
+    attributes:
       user:
         states:
           unapproved: Non approuvé
           approved: Approuvé
-
+      communication:
+        states:
+          draft: Brouillon
+          published: Publié

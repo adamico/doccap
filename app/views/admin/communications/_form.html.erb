@@ -4,14 +4,14 @@
   <%= f.hidden_field :fichier_name %>
 
   <div class="form-group">
-    <%= f.label :titre, class: "col-sm-2 control-label" %>
+    <%= f.label :title, class: "col-sm-2 control-label" %>
     <div class="col-sm-3">
-      <%= f.text_field :titre, autofocus: true, class: "form-control" %>
+      <%= f.text_field :title, autofocus: true, class: "form-control" %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label :publication, "Publié le", class: "col-sm-2 control-label" %>
+    <%= f.label :publication, "Etat", class: "col-sm-2 control-label" %>
     <div class="col-sm-3">
       <%= f.date_field :publication, class: "form-control" %>
     </div>
@@ -32,12 +32,12 @@
   </div>
 
   <div class="form-group communication_tags">
-    <%= f.label :tags, "Mots clés", class: "control-label col-sm-2" %>
+    <%= f.label :tag_list, "Mots clés", class: "control-label col-sm-2" %>
     <div class="col-sm-6">
-      <%= f.hidden_field :tags,
-        value: f.object.tags,
+      <%= f.hidden_field :tag_list,
+        value: (items = f.object.tag_list),
         data: {
-          load: f.object.tags_array.map {|tag| {id: tag, text: tag}}.to_json,
+          load: items.map {|tag| {id: tag, text: tag}}.to_json,
           placeholder: "mots séparés par virgule",
           url: admin_communication_tags_path(format: :json)
       } %>
@@ -45,9 +45,10 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :publication, "Publié ?", class: "col-sm-2 control-label" %>
+    <%= f.label :state, "Publié ?", class: "col-sm-2 control-label" %>
     <div class="col-sm-3">
-      <%= f.collection_select :published, [["Oui", "oui"], ["Non", "non"]], :last, :first, {}, class: "form-control" %>
+      <%= f.collection_select :state, Communication.human_states,
+                              :last, :first,  {}, class: "form-control" %>
     </div>
   </div>
 
@@ -55,8 +56,8 @@
     <div class="col-lg-offset-2 col-lg-10">
       <div class="btn-group">
         <%= f.submit "Enregistrer", class: "btn btn-primary" %>
-        <%= link_to 'Retour au document', communication,
-          class: "btn btn-warning" unless communication.new_record? %>
+        <%= link_to 'Retour à la liste', admin_communications_path,
+          class: "btn btn-danger" unless communication.new_record? %>
       </div>
     </div>
   </div>
