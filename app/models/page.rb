@@ -1,6 +1,8 @@
 class Page < ActiveRecord::Base
-  #include Mongoid::Tree
-  #include Slug
+  extend FriendlyId
+
+  friendly_id :name, use: :slugged
+  has_ancestry
 
   enum state: [:draft, :published]
 
