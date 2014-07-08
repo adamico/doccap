@@ -1,12 +1,14 @@
-<% form_title = "Nouvelle Catégorie" %>
-<%= form_for [:admin, category], html: {role: "form", data: {title: form_title}, class: "form-inline"} do |f| %>
-  <%= render "application/form_errors", model: category %>
-
-  <div class="form-group">
-    <%= f.label :name, "Nom", class: "sr-only" %>
-    <%= f.text_field :name, class: "form-control", placeholder: "Libéllé", autofocus: true %>
-  <div class="form-actions">
-    <%= f.submit "Enregistrer", data: {disable_with: "Attendre..."}, class: "btn btn-success" %>
-    <%= button_tag "Annuler", type: :submit, class: "btn btn-danger" %>
-  </div>
+<% form_title = 'Nouvelle Catégorie' %>
+<%= simple_form_for [:admin, category], wrapper: :inline_form,
+             html: { role: 'form', data: { title: form_title },
+                     class: 'form-inline' },
+             wrapper_mappings: { boolean: :vertical_boolean } do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :name, label_html: { class: 'sr-only' },
+                     placeholder: 'Catégorie',
+                     input_html: { autofocus: true } %>
+  <%= f.button :submit, "Enregistrer",
+               data: { disable_with: "Attendre..." },
+               class: "btn btn-success" %>
+  <%= button_tag "Annuler", type: :submit, class: "btn btn-danger" %>
 <% end %>
