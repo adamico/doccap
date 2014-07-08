@@ -4,7 +4,7 @@ Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
-  config.secret_key = 'fb9d0d0d1d88d8f7fdf8a56d973f16791173f5e91ba9534b8af5088058cff2e3b51742084da920653355d325d0648c183c3dea7a88a09d3ea5099d015507d108'
+  config.secret_key = '02f0fd2bce569c0a1f808a14040307ecd67aa3afbe1c2b3b2976abd519ea50aa42b4c4d8ca013f522872274a048b24fee9c49b1aa3aeb838aae81e4e10434d97'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -19,7 +19,7 @@ Devise.setup do |config|
   # Load and configure the ORM. Supports :active_record (default) and
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
-  #require 'devise/orm/mongoid'
+  require 'devise/orm/active_record'
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
@@ -95,14 +95,14 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = 'd39410b5a600845296581ca9ac39e8695ca741ff13ba6869c4755e787bdf635885fb5cdc13c786d3b14c610afdebd0729c719475ab0dabbb77e2f41157a96b70'
+  # config.pepper = 'e547527b8915b6345b4b233d6de43fef7aaea3a8e0a366363ecdd6ccf1c386676d427e46ae44aca2664fc2b1cdb0253c2240bf13e4f6ac75d65dfe73b3e603e6'
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
-  # confirming his account. For instance, if set to 2.days, the user will be
-  # able to access the website for two days without confirming his account,
+  # confirming their account. For instance, if set to 2.days, the user will be
+  # able to access the website for two days without confirming their account,
   # access will be blocked just in the third day. Default is 0.days, meaning
-  # the user cannot access the website without confirming his account.
+  # the user cannot access the website without confirming their account.
   # config.allow_unconfirmed_access_for = 2.days
 
   # A period that the user is allowed to confirm their account before their
