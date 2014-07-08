@@ -1,7 +1,7 @@
 require "spec_helper"
 
 feature "User browsing coordonnees" do
-  let!(:user) {build_stubbed :approved_user}
+  let!(:user) { create :approved_user }
 
   background do
     login user

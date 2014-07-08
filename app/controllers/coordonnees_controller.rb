@@ -4,7 +4,7 @@ class CoordonneesController < ApplicationController
   after_action :verify_policy_scoped, only: :index
 
   def index
-    @coordonnees = policy_scope(Coordonnee).includes(:coord_category).asc(:libelle)
+    @coordonnees = policy_scope(Coordonnee).order('libelle asc')
     respond_with @coordonnees
 
   end
