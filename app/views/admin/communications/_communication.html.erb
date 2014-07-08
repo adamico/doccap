@@ -2,7 +2,7 @@
   <td><%= link_to communication.title, [:admin, communication] %></td>
   <td><%= l communication.publication %></td>
   <td><%= communication.category %></td>
-  <td><%= communication.tags %></td>
+  <td><%= communication.tag_list %></td>
   <td><%= link_to communication.fichier_name, communication.fichier_url, target: "_BLANK" if communication.fichier_url %></td>
   <td>
     <div class="btn-group">

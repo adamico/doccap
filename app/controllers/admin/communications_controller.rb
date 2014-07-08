@@ -3,7 +3,8 @@ class Admin::CommunicationsController < ApplicationController
   after_action :verify_policy_scoped, only: :index
 
   def tags
-    @tags = Communication.tags.select {|tag| tag =~ /#{params[:q]}/i}
+    the_tags = ActsAsTaggableOn::Tag.named_like(params[:q])
+    @tags = the_tags.any? ? the_tags : [params[:q]]
   end
 
   def index
@@ -21,7 +22,7 @@ class Admin::CommunicationsController < ApplicationController
   end
 
   def edit
-    @communication = Communication.find(params[:id])
+    @communication = Communication.friendly.find(params[:id])
     authorize @communication
   end
 
@@ -32,7 +33,7 @@ class Admin::CommunicationsController < ApplicationController
   end
 
   def update
-    @communication = Communication.find(params[:id])
+    @communication = Communication.friendly.find(params[:id])
     @communication.update(communication_params)
     authorize @communication
     respond_with @communication, location: admin_communications_url
@@ -53,7 +54,7 @@ class Admin::CommunicationsController < ApplicationController
 
   def communication_params
     params.require(:communication).permit(:title, :publication, :fichier_name,
-                                          :fichier_url, :tags, :category_id,
+                                          :fichier_url, :tag_list, :category_id,
                                           :state)
   end
 end

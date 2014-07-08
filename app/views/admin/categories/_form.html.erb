@@ -1,4 +1,3 @@
-<% form_title = 'Nouvelle Catégorie' %>
 <%= simple_form_for [:admin, category], wrapper: :inline_form,
              html: { role: 'form', data: { title: form_title },
                      class: 'form-inline' },
@@ -7,8 +6,10 @@
   <%= f.input :name, label_html: { class: 'sr-only' },
                      placeholder: 'Catégorie',
                      input_html: { autofocus: true } %>
-  <%= f.button :submit, "Enregistrer",
-               data: { disable_with: "Attendre..." },
-               class: "btn btn-success" %>
-  <%= button_tag "Annuler", type: :submit, class: "btn btn-danger" %>
+  <div class='form-actions'>
+    <%= f.button :submit, "Enregistrer",
+                 data: { disable_with: "Attendre..." },
+                 class: "btn btn-success" %>
+    <%= button_tag "Annuler", type: :submit, class: "btn btn-danger" %>
+  </div>
 <% end %>
