@@ -11,7 +11,7 @@ class Admin::CommunicationsController < ApplicationController
   end
 
   def show
-    @communication = Communication.find(params[:id])
+    @communication = Communication.friendly.find(params[:id])
     authorize @communication
   end
 
