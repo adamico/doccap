@@ -1,7 +1,9 @@
 class CoordCategory < ActiveRecord::Base
-  #include Mongoid::Tree
-  #include Slug
-  #
+  extend FriendlyId
+
+  friendly_id :name, use: :slugged
+  #has_ancestry
+
   default_scope { order(:name) }
 
   def to_s
