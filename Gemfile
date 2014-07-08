@@ -4,8 +4,7 @@ ruby '2.1.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
 
-gem 'mongoid', github: "mongoid/mongoid"
-gem 'bson_ext'
+gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
@@ -59,7 +58,7 @@ gem 'foreman'
 gem 'bootstrap-sass', '~> 3.2.0.0'
 gem 'autoprefixer-rails'
 gem "devise", github: "plataformatec/devise"
-gem 'mongoid_taggable'
+gem 'acts-as-taggable-on', '~> 3.2.6'
 gem 'select2-rails', github: "argerim/select2-rails"
 gem "cancan", github: "ncri/cancan", branch: "2.0"
 gem "httparty"
@@ -68,7 +67,7 @@ gem "fog"
 gem 'unf'
 gem 'responders'
 gem 'ckeditor', '~> 4.0.11'
-gem "mongoid-tree", github: "benedikt/mongoid-tree", branch: "mongoid-4.0"
+gem 'ancestry', '~> 2.1.0'
 gem "pundit", github: "elabs/pundit"
 
 group :test, :development do
@@ -83,7 +82,6 @@ group :test do
   gem "database_cleaner", github: "bmabey/database_cleaner"
   gem "guard-rspec", "~> 2.1.0"
   gem "simplecov", require: false
-  gem "mongoid-rspec"
 end
 
 group :development do
