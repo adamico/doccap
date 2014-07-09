@@ -18,5 +18,5 @@
 <div class="btn-group">
   <%= link_to 'Modifier', edit_admin_communication_path(@communication), class: "btn btn-warning" if policy(@communication).create? %>
   <%= link_to 'Détruire', [:admin, @communication], method: :delete, data: [confirm: "Etes-vous sûr ?"], class: "btn btn-danger" if policy(@communication).destroy? %>
-  <%= link_to 'Retour à la liste', admin_communications_path, class: "btn btn-default" %>
+  <%= link_to 'Retour à la liste', communications_path, class: "btn btn-default" %>
 </div>

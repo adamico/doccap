@@ -1,19 +1,9 @@
 class Admin::CommunicationsController < ApplicationController
-  after_action :verify_authorized, except: [:index, :tags]
-  after_action :verify_policy_scoped, only: :index
+  after_action :verify_authorized, except: :tags
 
   def tags
     the_tags = ActsAsTaggableOn::Tag.named_like(params[:q])
     @tags = the_tags.any? ? the_tags : [params[:q]]
-  end
-
-  def index
-    @communications = policy_scope(Communication).order(:publication)
-  end
-
-  def show
-    @communication = Communication.friendly.find(params[:id])
-    authorize @communication
   end
 
   def new

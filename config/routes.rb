@@ -1,4 +1,8 @@
 Doccap::Application.routes.draw do
+  get 'communications/show'
+
+  get 'communications/index'
+
   devise_for :users
 
   as :user do
@@ -15,6 +19,8 @@ Doccap::Application.routes.draw do
   get "coord", to: "coordonnees#index"
 
   get "intranet", to: "private#index"
+
+  resources :communications, only: [:show, :index]
 
   namespace :admin do
     resources :users do

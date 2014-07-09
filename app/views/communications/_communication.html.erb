@@ -1,5 +1,5 @@
 <tr class=<%= communication.published? ? (communication.fichier_url.present? ? "" : "warning") : "danger" %>>
-  <td><%= link_to communication.title, [:admin, communication] %></td>
+  <td><%= link_to communication.title, communication %></td>
   <td><%= l communication.publication %></td>
   <td><%= communication.category %></td>
   <td><%= communication.tag_list %></td>
