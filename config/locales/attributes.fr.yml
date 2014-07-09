@@ -6,9 +6,14 @@ fr:
           unapproved: Non approuvé
           approved: Approuvé
       communication:
+        category_id: Catégorie
+        publication: Publié le
+        state: Etat
         states:
           draft: Brouillon
           published: Publié
+        tag_list: Mots clés
+        title: Titre
       page:
         states:
           draft: Brouillon

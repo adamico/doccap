@@ -18,8 +18,7 @@
 
   <div class='row'>
     <div class='col-sm-offset-2 col-sm-3'>
-      <%= f.input :publication, as: :string, placeholder: 'jj/mm/aaaa',
-                                label: 'Publié le' %>
+      <%= f.input :publication, as: :string, placeholder: 'jj/mm/aaaa' %>
     </div>
     <div class='col-sm-3'>
       <%= f.input :state, collection: Communication.human_states %>
@@ -31,7 +30,7 @@
       <%= content_tag :div, class: 'form-group select required
                                     communication_category',
                             id: 'communication_category_id_field' do %>
-        <%= f.label :category_id, 'Catégorie', class: 'control-label' %>
+        <%= f.label :category_id, class: 'control-label' %>
         <%= f.hidden_field :category_id,
                            data: {
                              placeholder: "Choisir une catégorie",
@@ -47,15 +46,15 @@
           data: { target: '#category_modal', toggle: 'modal' },
           title: 'Nouvelle catégorie',
           class: 'btn btn-default category_create' do %>
-          <%= content_tag(:i, nil, class: 'icon-plus') %>
-          Nouvelle catégorie
+          <%= content_tag(:span, nil, class: 'glyphicon glyphicon-plus') %>
+          Création
         <% end %>
         <%= link_to edit_admin_category_path(id: '__ID__'),
           data: {target: '#category_modal', toggle: 'modal'},
           title: 'Modifier catégorie',
           class: 'btn btn-default category_update' do %>
-          <%= content_tag(:i, nil, class: 'icon-pencil') %>
-          Voir/modifier
+          <%= content_tag(:span, nil, class: 'glyphicon glyphicon-pencil') %>
+          Mise à jour
         <% end %>
       </div>
     </div>
@@ -64,7 +63,7 @@
   <div class='row'>
     <div class='col-sm-offset-2 col-sm-6'>
       <div class='form-group'>
-        <%= f.label :tag_list, 'Mots clés', class: 'control-label' %>
+        <%= f.label :tag_list, class: 'control-label' %>
         <%= f.hidden_field :tag_list,
           value: (items = f.object.tag_list),
           data: {
