@@ -1,5 +1,7 @@
-<h1>Modification utilisateur: <%= @user.email %></h1>
+<div class='row'>
+  <div class='col-md-offset-2 col-md-8'>
+    <h1>Modification utilisateur</h1>
+  </div>
+</div>
 
 <%= render 'form', user: @user %>
-
-<%= link_to 'Retour à la liste', admin_users_path %>

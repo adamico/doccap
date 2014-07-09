@@ -1,38 +1,27 @@
-<%= form_for([:admin, user], html: {class: "form-horizontal", role: "form"}) do |f| %>
-  <%= render "application/form_errors", model: user %>
+<div class='row'>
+  <div class='col-md-10'>
+    <%= simple_form_for [:admin, user], html: { class: 'form-horizontal', role: 'form' },
+                            wrapper: :horizontal_form,
+                            wrapper_mappings: {
+                              check_boxes: :horizontal_radio_and_checkboxes,
+                              radio_buttons: :horizontal_radio_and_checkboxes,
+                              file: :horizontal_file_input,
+                              boolean: :horizontal_boolean } do |f| %>
+      <%= f.error_notification %>
 
-  <div class="form-group">
-    <%= f.label :email, class: "col-sm-2 control-label" %>
-    <div class="col-sm-3">
-      <%= f.email_field :email, autofocus: true, autocomplete: "off", class: "form-control" %>
-    </div>
-  </div>
+      <%= f.input :email, input_html: { autofocus: true } %>
+      <%= f.input :password, input_html: { autocomplete: 'off' } %>
+      <%= f.input :password_confirmation, input_html: { autocomplete: 'off' } %>
 
-  <div class="form-group">
-    <%= f.label :password, "Mot de passe", class: "col-sm-2 control-label" %>
-    <div class="col-sm-3">
-      <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-    </div>
-  </div>
+      <% unless f.object.new_record? %>
+        <%= f.input :current_password, as: :password %>
+      <% end %>
 
-  <div class="form-group">
-    <%= f.label :password_confirmation, "Confirmer", class: "col-sm-2 control-label" %>
-    <div class="col-sm-3">
-      <%= f.password_field :password_confirmation, class: "form-control" %>
-    </div>
-  </div>
-
-  <% unless f.object.new_record? %>
-    <div class="form-group">
-      <%= f.label :current_password, "Mot de passe actuel", class: "col-sm-2 control-label" %>
-      <div class="col-sm-3">
-        <%= f.password_field :current_password, class: "form-control" %>
+      <div class='form-group'>
+        <div class='col-sm-offset-3 col-sm-9'>
+        <%= f.button :submit, class: 'btn-success' %>
+        <%= link_to 'Retour à la liste', admin_users_path, class: 'btn btn-danger' %>
       </div>
-    </div>
-  <% end %>
-
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-    <%= f.submit "Enregistrer", class: "btn btn-success" %>
+    <% end %>
   </div>
-<% end %>
+</div>
