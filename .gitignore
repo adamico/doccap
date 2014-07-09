@@ -21,3 +21,5 @@
 dump/
 .env*
 .envrc
+
+/db/csv
