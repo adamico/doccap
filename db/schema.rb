@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140708133127) do
+ActiveRecord::Schema.define(version: 20140709143930) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20140708133127) do
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "old_id"
   end
 
   add_index "categories", ["slug"], name: "index_categories_on_slug", unique: true, using: :btree
@@ -34,7 +35,7 @@ ActiveRecord::Schema.define(version: 20140708133127) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "category_id"
-    t.integer  "state"
+    t.integer  "state",        default: 0
   end
 
   add_index "communications", ["category_id"], name: "index_communications_on_category_id", using: :btree
@@ -84,6 +85,7 @@ ActiveRecord::Schema.define(version: 20140708133127) do
     t.string   "ancestry"
   end
 
+  add_index "pages", ["ancestry"], name: "index_pages_on_ancestry", using: :btree
   add_index "pages", ["slug"], name: "index_pages_on_slug", unique: true, using: :btree
 
   create_table "roles", force: true do |t|
