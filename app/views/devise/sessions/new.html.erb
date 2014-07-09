@@ -1,14 +1,11 @@
 <h2>Veuillez entrer email et mot de passe</h2>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), html: {class: "form-inline", role: "form"}) do |f| %>
-  <div class="form-group">
-    <%= f.label :email, class: "sr-only" %>
-    <%= f.text_field :email, autofocus: true, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :password, "Mot de passe", class: "sr-only" %>
-    <%= f.password_field :password, class: "form-control" %>
-  </div>
+<%= simple_form_for resource, as: resource_name,
+                    url: session_path(resource_name),
+                    wrapper: :inline_form, html: { class: 'form-inline session' },
+                    wrapper_mappings: { boolean: :vertical_boolean } do |f| %>
 
-  <%= f.submit "Connexion", class: "btn btn-default" %>
+  <%= f.input :email %>
+  <%= f.input :password %>
+  <%= f.button :submit, 'Se connecter', class: 'btn btn-success' %>
 <% end %>

@@ -12,6 +12,9 @@ fr:
       default_message: "Des erreurs ont été trouvées, vérifiez :"
     labels:
       name: "Nom"
+    placeholders:
+      email: Email
+      password: Mot de passe
     # Labels and hints examples
     # labels:
     #   password: 'Password'
