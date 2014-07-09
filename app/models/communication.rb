@@ -1,5 +1,6 @@
 class Communication < ActiveRecord::Base
   extend FriendlyId
+  include PgSearch
   acts_as_taggable
 
   friendly_id :title, use: :slugged
@@ -19,15 +20,16 @@ class Communication < ActiveRecord::Base
       end
     end
   end
-  #def self.search_by_titre_or_tag(query)
-    #(self.by_titre(query) + self.by_tag(query)).uniq
-  #end
 
-  #def self.by_titre(query)
-    #published.where(slugged_titre: /.*#{query}.*/i)
-  #end
+  pg_search_scope :text_search, against: :title,
+                                associated_against: { tags: :name },
+                                using: { tsearch: {
+                                  prefix: true,
+                                  dictionary: 'french' }
+                                },
+                                ignoring: :accents
 
-  #def self.by_tag(query)
-    #published.tagged_with_any(/.*#{query}.*/i)
-  #end
+  def self.search(query)
+    text_search(query) if query.present?
+  end
 end

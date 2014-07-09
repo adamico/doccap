@@ -5,6 +5,7 @@ ruby '2.1.2'
 gem 'rails', '4.1.4'
 
 gem 'pg'
+gem 'pg_search'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'

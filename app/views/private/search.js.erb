@@ -8,7 +8,7 @@
     <% @communications_by_category.each do |category, comms| %>
       communications += "<h4><%= category %></h4>";
       communications += "<ul class='list-unstyled'>";
-      <% comms.each do |communication| %>
+      <% comms.sort { |a,b| b.publication <=> a.publication }.each do |communication| %>
         communications += "<%= j render "communication", communication: communication %>";
       <% end %>
       communications += "</ul>";

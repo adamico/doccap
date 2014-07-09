@@ -7,7 +7,10 @@ class PrivateController < ApplicationController
   def search
     vigitox = "http://vigitox.herokuapp.com"
     @vigitox = vigitox
-    @communications_by_category = Communication.search_by_titre_or_tag(params['query']).group_by {|comm| comm.category.name }
-    @articles = HTTParty.get("#{@vigitox}/api/v1/articles?q=#{params['query'].parameterize}")
+    @communications_by_category = Communication.search(params[:query])
+      .group_by { |comm| comm.category.name }
+    @articles = HTTParty
+      .get("#{@vigitox}/api/v1/articles?q=#{params['query'].parameterize}")
+    logger.info 'foo'
   end
 end
