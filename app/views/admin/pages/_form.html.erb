@@ -1,23 +1,26 @@
-<%= form_for [:admin, page] do |f| %>
-  <%= render "application/form_errors", model: page %>
-
-  <div class="form-group">
-    <%= f.label :name, "Nom" %>
-    <%= f.text_field :name, autofocus: true, class: "form-control" %>
-  </div>
-  <div class="row">
-    <div class="form-group col-sm-3">
-      <%= f.label :parent_id, "Parent" %>
-      <%= f.collection_select :parent_id, @parents, :id, :name, {include_blank: true}, class: "form-control" %>
-    </div>
-    <div class="form-group col-sm-2">
-      <%= f.label :state, 'Etat' %>
-      <%= f.collection_select :state, Page.human_states, :last, :first, {}, class: "form-control" %>
+<%= simple_form_for [:admin, page],
+                    wrapper_mappings: {
+                     check_boxes: :vertical_radio_and_checkboxes,
+                     radio_buttons: :vertical_radio_and_checkboxes,
+                     file: :vertical_file_input,
+                     boolean: :vertical_boolean } do |f| %>
+  <%= f.error_notification %>
+  <div class='row'>
+    <div class='col-md-offset-2 col-md-6'>
+      <%= f.input :name, input_html: { autofocus: true } %>
     </div>
   </div>
-  <div class="form-group">
-    <%= f.label :content, "Contenu" %>
-    <%= f.cktext_area :content %>
+  <div class='row'>
+    <div class='col-md-offset-2 col-md-4'>
+      <%= f.input :parent_id, collection: @parents %>
+    </div>
+    <div class='col-md-2'>
+      <%= f.input :state, collection: Page.human_states %>
+    </div>
   </div>
-  <%= f.submit "Enregistrer", class: "btn btn-primary" %>
+  <%= f.input :content, as: :ckeditor %>
+  <div class='btn-group'>
+    <%= f.button :submit, class: 'btn-success' %>
+    <%= link_to 'Retour à la liste', admin_pages_path, class: 'btn btn-danger' %>
+  </div>
 <% end %>
